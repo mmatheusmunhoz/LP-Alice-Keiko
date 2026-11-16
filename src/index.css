@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@theme {
+  --color-aqua: #0D9488;
+  --color-aqua-light: #2DD4BF;
+  --color-aqua-pale: #F0FDFA;
+  --color-aqua-dark: #0F766E;
+  --color-seafoam: #14B8A6;
+  --color-star: #E0A526;
+  --color-gray-50: #F9F9F9;
+  --color-gray-100: #F7F7F7;
+  --color-gray-200: #EEEEEE;
+  --color-gray-600: #71717A;
+  --color-gray-700: #52525B;
+  --color-gray-800: #27272A;
+  --font-display: "Poppins", system-ui, -apple-system, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-caps: "Poppins", system-ui, -apple-system, sans-serif;
+}
+
+:root {
+  --primary: #0A0A0A;
+  --primary-hover: #0D9488;
+  --brand-aqua: #0D9488;
+  --brand-aqua-light: #2DD4BF;
+  --brand-aqua-pale: #F0FDFA;
+  --brand-aqua-dark: #0F766E;
+  --star-gold: #E0A526;
+  --background: #FFFFFF;
+  --surface: #F8FAFC;
+  --surface-footer: #F9F9F9;
+  --border: #EEEEEE;
+  --text: #71717A;
+  --text-strong: #18181B;
+  --text-muted: #52525B;
+  --heading: #0A0A0A;
+  --text-inverse: #FFFFFF;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: #71717A;
+  background-color: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom shadows matching specification */
+.shadow-float {
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.06);
+}
+
+.shadow-band {
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-inset {
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-back-top {
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* Safe & Resilient Fade-In-Up Animation (Visible by default to prevent blank screen) */
+.fade-in-up-observe {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+/* Progressive enhancement: only hide elements that are actively observed below viewport */
+.js-observer-active .fade-in-up-observe.is-waiting {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.js-observer-active .fade-in-up-observe.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Subtle staggered delays */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+
+/* Custom details/summary marker reset */
+details summary::-webkit-details-marker {
+  display: none;
+}
