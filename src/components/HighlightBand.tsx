@@ -12,9 +12,9 @@ export const HighlightBand: React.FC = () => {
           aria-hidden="true"
         >
           <img
-            src="https://res.cloudinary.com/k6gktjkm/image/upload/v1794336325/Logotipo_havaiano_de_organizac%CC%A7a%CC%83o_e_limpeza.png"
+            src="/assets/logo.webp"
             alt=""
-            className="w-full h-full object-contain filter grayscale"
+            className="w-full h-full object-contain rounded-2xl filter grayscale"
             loading="lazy"
           />
         </div>

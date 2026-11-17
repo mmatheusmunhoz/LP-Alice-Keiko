@@ -19,7 +19,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService }
 
             <div className="w-full aspect-square max-h-[520px] overflow-hidden bg-gray-100">
               <img
-                src="https://res.cloudinary.com/k6gktjkm/image/upload/v1794852727/IMG_6591.png"
+                src="/assets/photos/IMG_6591.jpg"
                 alt="Alice Keiko Organizing & Cleaning Services LLC — Immaculate Oʻahu property care"
                 loading="lazy"
                 className="w-full h-full object-cover"

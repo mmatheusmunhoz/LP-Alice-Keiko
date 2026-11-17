@@ -249,7 +249,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                     <h3 className="font-display text-[20px] text-[#0A0A0A] font-semibold leading-snug mb-2">
                       {service.title}
                     </h3>
-                    <p className="font-sans text-[14.5px] text-gray-600 leading-relaxed mb-4 line-clamp-2">
+                    <p className="font-sans text-[14.5px] text-gray-600 leading-relaxed mb-4">
                       {service.shortDescription}
                     </p>
 
@@ -445,7 +445,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                       {service.title}
                     </h3>
 
-                    <p className="font-sans text-[15px] xl:text-[15.5px] text-white/90 leading-relaxed mb-4 line-clamp-2">
+                    <p className="font-sans text-[15px] xl:text-[15.5px] text-white/90 leading-relaxed mb-4">
                       {service.shortDescription}
                     </p>
 

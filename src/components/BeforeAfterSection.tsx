@@ -10,53 +10,48 @@ interface GalleryItem {
 const BEFORE_AFTER_GALLERY: GalleryItem[] = [
   {
     id: 'ba-01',
-    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794854700/01.png',
+    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794873594/0.1.jpg',
     alt: 'Alice Keiko Before & After home transformation 01 on Oʻahu',
   },
   {
     id: 'ba-02',
-    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794854698/02.jpg',
+    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794873596/0.2.jpg',
     alt: 'Alice Keiko Before & After home transformation 02 on Oʻahu',
   },
   {
     id: 'ba-03',
-    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794854700/03.jpg',
+    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794873596/0.3.jpg',
     alt: 'Alice Keiko Before & After home transformation 03 on Oʻahu',
   },
   {
     id: 'ba-04',
-    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794854700/04.jpg',
+    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794873595/0.4.jpg',
     alt: 'Alice Keiko Before & After home transformation 04 on Oʻahu',
   },
   {
     id: 'ba-05',
-    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794854699/05.jpg',
+    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794873599/0.5.jpg',
     alt: 'Alice Keiko Before & After home transformation 05 on Oʻahu',
   },
   {
     id: 'ba-06',
-    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794854699/06.jpg',
+    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794873600/0.6.jpg',
     alt: 'Alice Keiko Before & After home transformation 06 on Oʻahu',
   },
   {
     id: 'ba-07',
-    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794854700/07.jpg',
+    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794873598/0.7.jpg',
     alt: 'Alice Keiko Before & After home transformation 07 on Oʻahu',
   },
   {
     id: 'ba-08',
-    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794854698/08.jpg',
+    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794873604/0.8.jpg',
     alt: 'Alice Keiko Before & After home transformation 08 on Oʻahu',
   },
   {
     id: 'ba-09',
-    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794854699/09.jpg',
+    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794873603/0.9.jpg',
     alt: 'Alice Keiko Before & After home transformation 09 on Oʻahu',
-  },
-  {
-    id: 'ba-10',
-    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794854702/10.jpg',
-    alt: 'Alice Keiko Before & After home transformation 10 on Oʻahu',
   },
 ];
 
@@ -122,10 +117,10 @@ export const BeforeAfterSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Main Before/After Display + 10-Photo Thumbnail Strip */}
+          {/* Right Column: Main Before/After Display + 9-Photo Thumbnail Strip */}
           <div className="lg:col-span-7 w-full">
             {/* Main Showcase Frame */}
-            <div className="relative aspect-[4/3] sm:aspect-[16/11] bg-[#F8FAFC] border border-gray-200 overflow-hidden shadow-xs group">
+            <div className="relative aspect-[2400/1792] bg-[#F8FAFC] border border-gray-200 overflow-hidden shadow-xs group">
               <img
                 src={currentItem.src}
                 alt={currentItem.alt}
@@ -152,9 +147,9 @@ export const BeforeAfterSection: React.FC = () => {
               </button>
             </div>
 
-            {/* Thumbnail Strip: Horizontal Scroll on Mobile, Clean 10-Tile Row on Desktop */}
+            {/* Thumbnail Strip: Horizontal Scroll on Mobile, Clean 9-Tile Row on Desktop */}
             <div
-              className="mt-3 flex lg:grid lg:grid-cols-10 gap-2 lg:gap-1.5 overflow-x-auto pb-1 lg:pb-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="mt-3 flex lg:grid lg:grid-cols-9 gap-2 lg:gap-1.5 overflow-x-auto pb-1 lg:pb-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               role="tablist"
               aria-label="Before and after transformation gallery thumbnails"
             >
@@ -168,7 +163,7 @@ export const BeforeAfterSection: React.FC = () => {
                     aria-selected={isSelected}
                     aria-label={`View Before & After photo ${idx + 1}`}
                     onClick={() => setActiveIndex(idx)}
-                    className={`relative w-16 h-16 sm:w-[72px] sm:h-[72px] lg:w-full lg:h-auto lg:aspect-square shrink-0 overflow-hidden border transition-all duration-200 cursor-pointer bg-gray-100 ${
+                    className={`relative w-20 sm:w-24 lg:w-full aspect-[2400/1792] shrink-0 overflow-hidden border transition-all duration-200 cursor-pointer bg-[#F8FAFC] ${
                       isSelected
                         ? 'border-[#0D9488] ring-2 ring-[#0D9488] opacity-100'
                         : 'border-gray-200 opacity-60 hover:opacity-100 hover:border-gray-400'
@@ -178,7 +173,7 @@ export const BeforeAfterSection: React.FC = () => {
                       src={item.src}
                       alt={item.alt}
                       loading="lazy"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                     />
                   </button>
                 );

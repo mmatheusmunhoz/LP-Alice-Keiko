@@ -103,7 +103,7 @@ export default function App() {
       return el;
     });
 
-    const ogImageUrl = 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794339335/Sala_costeira_renovada_com_jardim.png';
+    const ogImageUrl = 'https://alicekeikocleaning.com/assets/photos/IMG_6591.jpg';
 
     // OpenGraph Type, Site Name, Locale, Title, Description & Image
     setMetaTag('meta[property="og:type"]', 'content', 'website', () => {
@@ -203,7 +203,7 @@ export default function App() {
       '@type': 'CleaningService',
       name: 'Alice Keiko Organizing and Cleaning Services, LLC',
       alternateName: 'Alice Keiko Cleaning Oahu',
-      image: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794336325/Logotipo_havaiano_de_organizac%CC%A7a%CC%83o_e_limpeza.png',
+      image: 'https://alicekeikocleaning.com/assets/logo.webp',
       telephone: '+1-808-218-2515',
       email: 'Keikomcd@gmail.com',
       url: canonicalUrl,

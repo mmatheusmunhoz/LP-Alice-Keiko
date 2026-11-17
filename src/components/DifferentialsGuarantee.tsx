@@ -132,7 +132,7 @@ export const DifferentialsGuarantee: React.FC<DifferentialsGuaranteeProps> = ({
         </div>
 
         {/* Alice Keiko Work Portfolio Gallery */}
-        <WorkGallery />
+        <WorkGallery onScrollToContact={onScrollToContact} />
       </div>
     </section>
   );

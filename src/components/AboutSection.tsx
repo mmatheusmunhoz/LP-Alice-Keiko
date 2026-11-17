@@ -17,8 +17,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onScrollToContact })
           <div className="lg:col-span-5 fade-in-up-observe">
             <div className="relative aspect-[4/5] overflow-hidden border border-white/20 shadow-2xl">
               <img
-                src="https://res.cloudinary.com/k6gktjkm/image/upload/v1794345449/WhatsApp_Image_2026-10-30_at_10.48.11_1.jpg"
-                alt="Alice Keiko quality standards and team precision on Oahu"
+                src="https://res.cloudinary.com/k6gktjkm/image/upload/v1794871797/WhatsApp_Image_2026-10-30_at_10.48.11_1.jpg"
+                alt="Alice Keiko uniformed specialist detailing oceanfront residence on Oahu"
                 loading="lazy"
                 className="w-full h-full object-cover"
               />

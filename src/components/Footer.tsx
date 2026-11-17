@@ -25,10 +25,18 @@ export const Footer: React.FC<FooterProps> = ({ onScrollToContact }) => {
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
               <img
-                src="https://res.cloudinary.com/k6gktjkm/image/upload/v1794336325/Logotipo_havaiano_de_organizac%CC%A7a%CC%83o_e_limpeza.png"
+                src="/assets/logo.webp"
                 alt="Alice Keiko Organizing & Cleaning Services LLC"
-                className="h-12 w-auto object-contain"
+                className="h-12 w-12 rounded-xl object-cover border border-white/15 shrink-0"
               />
+              <div>
+                <span className="font-display text-lg font-semibold text-white block leading-tight">
+                  Alice Keiko
+                </span>
+                <span className="font-caps text-[10px] tracking-[1.5px] uppercase text-aqua-light block">
+                  Organizing & Cleaning Services LLC
+                </span>
+              </div>
             </div>
 
             <p className="font-sans text-[15px] leading-relaxed text-gray-400 max-w-sm">

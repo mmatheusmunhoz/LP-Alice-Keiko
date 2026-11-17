@@ -69,22 +69,26 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuoteModal }) => {
         }`}
       >
         <div className="max-w-[1160px] w-[92%] mx-auto flex items-center justify-between">
-          {/* Brand Logo with Client Transparent PNG Logo */}
-          <a href="#" className="flex items-center group py-0.5">
+          {/* Brand Logo */}
+          <a href="#" className="flex items-center group py-0.5 shrink-0">
             <img
-              src="https://res.cloudinary.com/k6gktjkm/image/upload/v1794336325/Logotipo_havaiano_de_organizac%CC%A7a%CC%83o_e_limpeza.png"
+              src={
+                isScrolled
+                  ? 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794875840/alice_keiko_logo_header_light_transparent_3200px.png'
+                  : 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794875543/alice_keiko_logo_header_dark_transparent_3200px.png'
+              }
               alt="Alice Keiko Organizing & Cleaning Services LLC"
-              className="h-11 sm:h-13 md:h-14 w-auto object-contain transition-transform duration-200 group-hover:scale-102"
+              className="h-9 sm:h-10 lg:h-11 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02] shrink-0"
             />
           </a>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center space-x-1">
+          <nav className="hidden lg:flex items-center space-x-0.5 xl:space-x-1">
             {navLinks.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className={`font-display text-[14.5px] px-3 py-1.5 transition-colors font-medium whitespace-nowrap ${
+                className={`font-display text-[13.5px] xl:text-[14.5px] px-2 xl:px-3 py-1.5 transition-colors font-medium whitespace-nowrap ${
                   isScrolled
                     ? 'text-gray-700 hover:text-[#0D9488]'
                     : 'text-white/90 hover:text-aqua-light'
@@ -135,9 +139,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuoteModal }) => {
             <div>
               <div className="flex items-center justify-between pb-5 border-b border-gray-200">
                 <img
-                  src="https://res.cloudinary.com/k6gktjkm/image/upload/v1794336325/Logotipo_havaiano_de_organizac%CC%A7a%CC%83o_e_limpeza.png"
+                  src="https://res.cloudinary.com/k6gktjkm/image/upload/f_auto,q_auto,w_800/v1794874172/logo_alice_keiko.jpg"
                   alt="Alice Keiko Organizing & Cleaning Services LLC"
-                  className="h-10 w-auto object-contain"
+                  className="h-9 w-auto object-contain rounded-xs shrink-0"
                 />
                 <button
                   onClick={() => setMobileMenuOpen(false)}

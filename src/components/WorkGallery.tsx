@@ -1,5 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight, Expand, X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, ChevronLeft, ChevronRight, Expand, X } from 'lucide-react';
+
+interface WorkGalleryProps {
+  onScrollToContact?: () => void;
+}
 
 interface WorkPhoto {
   id: string;
@@ -10,56 +14,56 @@ interface WorkPhoto {
 const ALICE_WORK_PHOTOS: WorkPhoto[] = [
   {
     id: 'work-01',
-    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794858929/IMG_7067.jpg',
+    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794870152/1.jpg',
     alt: 'Alice Keiko residential cleaning and detailing project 01 on Oʻahu',
   },
   {
     id: 'work-02',
-    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794858927/IMG_6588.jpg',
+    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794870152/2.jpg',
     alt: 'Alice Keiko residential cleaning and detailing project 02 on Oʻahu',
   },
   {
     id: 'work-03',
-    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794858927/IMG_1565.jpg',
+    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794870151/7.jpg',
     alt: 'Alice Keiko residential cleaning and detailing project 03 on Oʻahu',
   },
   {
     id: 'work-04',
-    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794858929/IMG_6591.jpg',
+    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794870150/8.jpg',
     alt: 'Alice Keiko residential cleaning and detailing project 04 on Oʻahu',
   },
   {
     id: 'work-05',
-    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794858928/IMG_6944.jpg',
+    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794870153/5.jpg',
     alt: 'Alice Keiko residential cleaning and detailing project 05 on Oʻahu',
   },
   {
     id: 'work-06',
-    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794858943/WhatsApp_Image_2026-11-11_at_13.27.47.jpg',
+    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794870152/3.jpg',
     alt: 'Alice Keiko residential cleaning and detailing project 06 on Oʻahu',
   },
   {
     id: 'work-07',
-    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794858929/IMG_0375.jpg',
+    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794870153/4.jpg',
     alt: 'Alice Keiko residential cleaning and detailing project 07 on Oʻahu',
   },
   {
     id: 'work-08',
-    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794858929/IMG_6711.jpg',
+    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794858943/WhatsApp_Image_2026-11-11_at_13.27.47.jpg',
     alt: 'Alice Keiko residential cleaning and detailing project 08 on Oʻahu',
   },
   {
     id: 'work-09',
-    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794858933/IMG_6937.jpg',
+    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794870154/9.jpg',
     alt: 'Alice Keiko residential cleaning and detailing project 09 on Oʻahu',
   },
 ];
 
-export const WorkGallery: React.FC = () => {
+export const WorkGallery: React.FC<WorkGalleryProps> = ({ onScrollToContact }) => {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [activeIdx, setActiveIdx] = useState(0);
-  const trackRef = useRef<HTMLDivElement | null>(null);
-  const cardRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  const currentPhoto = ALICE_WORK_PHOTOS[activeIdx];
 
   useEffect(() => {
     if (lightboxIndex === null) return;
@@ -82,46 +86,19 @@ export const WorkGallery: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [lightboxIndex]);
 
-  const handleTrackScroll = () => {
-    const container = trackRef.current;
-    if (!container) return;
-
-    const containerRect = container.getBoundingClientRect();
-    const center = containerRect.left + containerRect.width / 2;
-    let closest = 0;
-    let minDistance = Number.POSITIVE_INFINITY;
-
-    cardRefs.current.forEach((el, idx) => {
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const cardCenter = rect.left + rect.width / 2;
-      const dist = Math.abs(center - cardCenter);
-      if (dist < minDistance) {
-        minDistance = dist;
-        closest = idx;
-      }
-    });
-
-    if (closest !== activeIdx) {
-      setActiveIdx(closest);
-    }
+  const handlePrev = () => {
+    setActiveIdx((prev) => (prev > 0 ? prev - 1 : ALICE_WORK_PHOTOS.length - 1));
   };
 
-  const scrollToPhoto = (index: number) => {
-    const clamped = Math.max(0, Math.min(index, ALICE_WORK_PHOTOS.length - 1));
-    setActiveIdx(clamped);
+  const handleNext = () => {
+    setActiveIdx((prev) => (prev < ALICE_WORK_PHOTOS.length - 1 ? prev + 1 : 0));
+  };
 
-    const container = trackRef.current;
-    const card = cardRefs.current[clamped];
-    if (container && card) {
-      const containerRect = container.getBoundingClientRect();
-      const cardRect = card.getBoundingClientRect();
-      const targetLeft =
-        container.scrollLeft +
-        (cardRect.left - containerRect.left) -
-        (containerRect.width - cardRect.width) / 2;
-
-      container.scrollTo({ left: targetLeft, behavior: 'smooth' });
+  const handleContactClick = () => {
+    if (onScrollToContact) {
+      onScrollToContact();
+    } else {
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -130,136 +107,118 @@ export const WorkGallery: React.FC = () => {
 
   return (
     <div className="mt-20 pt-16 border-t border-gray-200/80 fade-in-up-observe">
-      {/* Gallery Header */}
-      <div className="mb-8">
-        <div className="max-w-2xl">
-          <span className="font-caps text-xs sm:text-sm font-bold tracking-[3.5px] uppercase text-[#0D9488] block mb-2.5">
-            IN THE FIELD · RECENT PROJECTS
-          </span>
-          <h3 className="font-display text-[28px] sm:text-[34px] font-semibold leading-[1.2] text-[#0A0A0A] tracking-[-0.02em] text-balance">
-            Work Completed by Alice & Her Team
-          </h3>
-          <p className="font-sans text-[15.5px] sm:text-[16.5px] text-gray-600 leading-relaxed mt-2.5">
-            A real look at residences, vacation rentals, and detail finishes delivered across Oʻahu. Tap any photograph to inspect full screen.
-          </p>
-        </div>
+      {/* Centered Section Header matching Before & After Gallery */}
+      <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+        <span className="font-caps text-xs sm:text-sm font-bold tracking-[4px] uppercase text-[#0D9488] block mb-3">
+          IN THE FIELD · RECENT PROJECTS
+        </span>
+        <h3 className="font-display text-[32px] sm:text-[40px] md:text-[44px] font-semibold leading-[1.2] text-[#0A0A0A] tracking-[-0.02em] text-balance">
+          Work Completed by Alice & Her Team
+        </h3>
+        <div className="w-16 h-[2px] bg-[#0D9488] mx-auto mt-4" />
       </div>
 
-      {/* Unified Horizontal Scroll-Snap Carousel (Mobile & Desktop) */}
-      <div>
-        <div className="flex items-center justify-between mb-3.5 text-xs">
-          <div className="flex items-center gap-2">
-            <span className="font-caps tracking-[1.8px] uppercase font-bold text-[#0D9488] tabular-nums">
-              {String(activeIdx + 1).padStart(2, '0')} / {String(ALICE_WORK_PHOTOS.length).padStart(2, '0')}
-            </span>
-            <span className="text-gray-300">|</span>
-            <span className="font-sans text-gray-500">
-              Swipe or use arrows · Click any photo to enlarge
-            </span>
+      {/* 2-Column Editorial Gallery Layout (Desktop side-by-side, Mobile stacked) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        {/* Left Column: Editorial Narrative + Unified CTA */}
+        <div className="lg:col-span-5 text-center lg:text-left">
+          <h4 className="font-display text-[26px] sm:text-[32px] font-semibold leading-[1.2] text-[#0A0A0A] tracking-[-0.02em] mb-5 text-balance">
+            Precision Care. Proven Results.
+          </h4>
+
+          <p className="font-sans text-[16px] sm:text-[17px] text-gray-600 leading-[1.75] mb-5">
+            A candid look inside the private Oʻahu estates, oceanfront residences, and vacation retreats cared for daily by Alice Keiko and her 5-person specialist team.
+          </p>
+
+          <p className="font-sans text-[16px] sm:text-[17px] text-gray-600 leading-[1.75] mb-8">
+            Every finished kitchen, spa bath, floor, and living area reflects consistent Japanese 5S discipline, eco-botanical care, and our 24-hour satisfaction pledge.
+          </p>
+
+          <div className="flex items-center justify-center lg:justify-start">
+            <button
+              type="button"
+              onClick={handleContactClick}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 bg-[#0A0A0A] hover:bg-[#0D9488] text-white font-caps text-xs sm:text-[13px] tracking-[2px] uppercase font-bold transition-colors cursor-pointer shadow-xs"
+            >
+              <span>CONTACT TODAY</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
 
-        <div className="relative">
-          {/* Floating Left Arrow */}
-          <button
-            type="button"
-            onClick={() => scrollToPhoto(activeIdx - 1)}
-            disabled={activeIdx === 0}
-            aria-label="Previous project photo"
-            className={`hidden sm:flex absolute -left-3 lg:-left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/95 backdrop-blur-xs border border-gray-200 shadow-lg items-center justify-center text-black transition-all cursor-pointer ${
-              activeIdx === 0
-                ? 'opacity-0 pointer-events-none'
-                : 'opacity-100 hover:bg-[#0D9488] hover:text-white hover:border-[#0D9488]'
-            }`}
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
+        {/* Right Column: Main Showcase Display + 9-Photo Thumbnail Strip */}
+        <div className="lg:col-span-7 w-full">
+          {/* Main Showcase Frame */}
+          <div className="relative aspect-[4/3] bg-gray-100 border border-gray-200 overflow-hidden shadow-xs group">
+            <img
+              src={currentPhoto.src}
+              alt={currentPhoto.alt}
+              onClick={() => setLightboxIndex(activeIdx)}
+              className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.02] cursor-zoom-in"
+            />
 
-          {/* Floating Right Arrow */}
-          <button
-            type="button"
-            onClick={() => scrollToPhoto(activeIdx + 1)}
-            disabled={activeIdx === ALICE_WORK_PHOTOS.length - 1}
-            aria-label="Next project photo"
-            className={`hidden sm:flex absolute -right-3 lg:-right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/95 backdrop-blur-xs border border-gray-200 shadow-lg items-center justify-center text-black transition-all cursor-pointer ${
-              activeIdx === ALICE_WORK_PHOTOS.length - 1
-                ? 'opacity-0 pointer-events-none'
-                : 'opacity-100 hover:bg-[#0D9488] hover:text-white hover:border-[#0D9488]'
-            }`}
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
+            {/* Left / Right Navigation Arrows */}
+            <button
+              type="button"
+              onClick={handlePrev}
+              aria-label="Previous project photo"
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-white/90 hover:bg-[#0D9488] text-black hover:text-white border border-gray-200 shadow-md flex items-center justify-center transition-colors cursor-pointer"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
 
-          {/* Carousel Track */}
+            <button
+              type="button"
+              onClick={handleNext}
+              aria-label="Next project photo"
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-white/90 hover:bg-[#0D9488] text-black hover:text-white border border-gray-200 shadow-md flex items-center justify-center transition-colors cursor-pointer"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+
+            {/* Full-screen expand trigger */}
+            <button
+              type="button"
+              onClick={() => setLightboxIndex(activeIdx)}
+              aria-label="Inspect project photo in full screen"
+              className="absolute bottom-3 right-3 w-8 h-8 bg-white/90 hover:bg-[#0D9488] text-black hover:text-white border border-gray-200 shadow-xs flex items-center justify-center transition-colors cursor-pointer"
+            >
+              <Expand className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* Thumbnail Strip: Horizontal Scroll on Mobile, Clean 9-Tile Row on Desktop */}
           <div
-            ref={trackRef}
-            onScroll={handleTrackScroll}
-            className="flex overflow-x-auto snap-x snap-mandatory gap-3.5 sm:gap-4 lg:gap-5 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-            role="region"
-            aria-label="Completed project photos carousel"
+            className="mt-3 flex lg:grid lg:grid-cols-9 gap-2 lg:gap-1.5 overflow-x-auto pb-1 lg:pb-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            role="tablist"
+            aria-label="Completed project photos thumbnails"
           >
-            {ALICE_WORK_PHOTOS.map((photo, idx) => (
-              <button
-                key={photo.id}
-                ref={(el) => {
-                  cardRefs.current[idx] = el;
-                }}
-                type="button"
-                onClick={() => setLightboxIndex(idx)}
-                className="w-[78vw] max-w-[310px] sm:w-[320px] md:w-[340px] lg:w-[360px] sm:max-w-none shrink-0 snap-center relative aspect-[4/3] bg-gray-100 border border-gray-200/90 overflow-hidden group text-left cursor-pointer shadow-xs hover:shadow-lg transition-shadow duration-300"
-                aria-label={`View project photo ${idx + 1} in full screen`}
-              >
-                <img
-                  src={photo.src}
-                  alt={photo.alt}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <span className="absolute bottom-2.5 right-2.5 w-8 h-8 bg-white/95 text-black flex items-center justify-center shadow-xs group-hover:bg-[#0D9488] group-hover:text-white transition-colors">
-                  <Expand className="w-4 h-4" />
-                </span>
-              </button>
-            ))}
+            {ALICE_WORK_PHOTOS.map((photo, idx) => {
+              const isSelected = activeIdx === idx;
+              return (
+                <button
+                  key={photo.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isSelected}
+                  aria-label={`View project photo ${idx + 1}`}
+                  onClick={() => setActiveIdx(idx)}
+                  className={`relative w-16 h-16 sm:w-[72px] sm:h-[72px] lg:w-full lg:h-auto lg:aspect-square shrink-0 overflow-hidden border transition-all duration-200 cursor-pointer bg-gray-100 ${
+                    isSelected
+                      ? 'border-[#0D9488] ring-2 ring-[#0D9488] opacity-100'
+                      : 'border-gray-200 opacity-60 hover:opacity-100 hover:border-gray-400'
+                  }`}
+                >
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
+                </button>
+              );
+            })}
           </div>
-        </div>
-
-        {/* Bottom Carousel Controls: Arrows + Synced Dots (Mobile & Desktop) */}
-        <div className="flex items-center justify-between mt-4">
-          <button
-            type="button"
-            onClick={() => scrollToPhoto(activeIdx - 1)}
-            disabled={activeIdx === 0}
-            aria-label="Previous photo"
-            className="w-9 h-9 sm:w-10 sm:h-10 bg-white border border-gray-200 flex items-center justify-center text-black disabled:opacity-35 hover:border-[#0D9488] hover:text-[#0D9488] transition-colors cursor-pointer"
-          >
-            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
-          </button>
-
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            {ALICE_WORK_PHOTOS.map((photo, idx) => (
-              <button
-                key={photo.id}
-                type="button"
-                onClick={() => scrollToPhoto(idx)}
-                aria-label={`Jump to photo ${idx + 1}`}
-                className={`h-1.5 sm:h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  activeIdx === idx
-                    ? 'w-6 sm:w-7 bg-[#0D9488]'
-                    : 'w-1.5 sm:w-2 bg-gray-300 hover:bg-gray-400'
-                }`}
-              />
-            ))}
-          </div>
-
-          <button
-            type="button"
-            onClick={() => scrollToPhoto(activeIdx + 1)}
-            disabled={activeIdx === ALICE_WORK_PHOTOS.length - 1}
-            aria-label="Next photo"
-            className="w-9 h-9 sm:w-10 sm:h-10 bg-white border border-gray-200 flex items-center justify-center text-black disabled:opacity-35 hover:border-[#0D9488] hover:text-[#0D9488] transition-colors cursor-pointer"
-          >
-            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
-          </button>
         </div>
       </div>
 
