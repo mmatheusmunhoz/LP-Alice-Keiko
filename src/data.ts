@@ -13,7 +13,7 @@ export const COMPANY_INFO = {
   email: 'Keikomcd@gmail.com',
   businessHours: 'Monday – Sunday, 7:30 AM – 5:30 PM HST',
   experience: '3 years and 4 months serving premier properties',
-  teamSize: '5 dedicated specialists personally trained & supervised by Alice',
+  teamSize: '5 dedicated specialists personally trained & supervised by Alice Keiko',
   location: 'North Shore of Oʻahu, Hawaiʻi (Serving all of Oʻahu & Neighbor Islands)',
   credentials: [
     'Fully Registered LLC & Licensed in Hawaiʻi',
@@ -80,7 +80,7 @@ export const SERVICES_LIST: ServiceItem[] = [
     id: 'vacation-rental',
     category: 'vacation',
     title: 'Vacation Rental & Airbnb Turnover',
-    subtitle: '10 AM – 3:30 PM GUEST READY',
+    subtitle: 'CHECK-OUT TO CHECK-IN GUEST READY',
     badge: 'SAME-DAY TURNOVER',
     shortDescription:
       'Same-day linen resets, staging, and photo checks between guests.',
@@ -91,7 +91,7 @@ export const SERVICES_LIST: ServiceItem[] = [
     recommendedFor: 'Airbnb Superhosts, VRBO Premier hosts, property asset managers',
     frequencyOptions: ['Per Guest Turnover', 'Same-Day Fast Reset', 'Mid-Stay Refresh'],
     checklist: [
-      'Prompt arrival following guest check-out (10:00 AM – 3:30 PM)',
+      'Turnover cleaning scheduled between guest check-out and the next check-in',
       'Complete linen & towel wash, sanitization, and crisp bed hospital corners',
       'Bathrooms disinfected and restocked with guest amenities and toiletries',
       'Kitchen wiped, dishes verified clean, refrigerator emptied and sanitized',
@@ -271,7 +271,7 @@ export const TESTIMONIALS_LIST: TestimonialItem[] = [
     id: 'test-1',
     title: 'Honest, Punctual, and Flawless Every Single Visit',
     quote:
-      'Finding someone you completely trust in your home on Oʻahu is rare. Alice and her team have been caring for our North Shore residence for over two years now. They are always on time, polite, respectful of our privacy, and their work ethic is second to none. If they say 8:00 AM, they are at the gate at 8:00 AM. Worth every penny.',
+      'Finding someone you completely trust in your home on Oʻahu is rare. Alice Keiko and her team have been caring for our North Shore residence for over two years now. They are always on time, polite, respectful of our privacy, and their work ethic is second to none. If they say 8:00 AM, they are at the gate at 8:00 AM. Worth every penny.',
     author: 'David & Sarah M.',
     role: 'Private Homeowners',
     location: 'North Shore, Oʻahu',
@@ -279,7 +279,7 @@ export const TESTIMONIALS_LIST: TestimonialItem[] = [
   },
   {
     id: 'test-2',
-    title: 'Our Vacation Rental Superhost Status is Safe with Alice',
+    title: 'Our Vacation Rental Superhost Status is Safe with Alice Keiko',
     quote:
       'We manage two luxury beachfront villas near Haleʻiwa. Before Alice Keiko, turnover days were pure anxiety. Now, her team comes in like clockwork, washes linens with hotel precision, restocks our welcome sets, and sends photo updates. Our guest cleanliness reviews are a solid 5.0 stars. I recommend her to everyone.',
     author: 'Kainoa R.',
@@ -291,7 +291,7 @@ export const TESTIMONIALS_LIST: TestimonialItem[] = [
     id: 'test-3',
     title: 'The Initial Deep Clean Transformed Our Whole House',
     quote:
-      'Alice recommended we start with a deep clean before switching to regular service, and what a difference. The sliding door tracks, window sills, and shower glass looked brand new. You can tell she personally trains her staff because the attention to detail is consistent across all rooms. She truly keeps her word.',
+      'Alice Keiko recommended we start with a deep clean before switching to regular service, and what a difference. The sliding door tracks, window sills, and shower glass looked brand new. You can tell she personally trains her staff because the attention to detail is consistent across all rooms. She truly keeps her word.',
     author: 'Elena T.',
     role: 'Architectural Homeowner',
     location: 'Kahala & Diamond Head',
@@ -304,7 +304,7 @@ export const FAQ_LIST: FAQItem[] = [
     category: 'Trust & Team',
     question: 'Who will be inside my home, and is your team trustworthy?',
     answer:
-      'Our team consists of 5 dedicated specialists plus owner Alice Keiko. Every team member undergoes thorough criminal background checks, is personally trained by Alice in our proprietary methods, wears neat company uniforms, and works under strict confidentiality. We treat your property with the same reverence and care we give our own homes.',
+      'Our team consists of 5 dedicated specialists plus owner Alice Keiko. Every team member undergoes thorough criminal background checks, is personally trained by Alice Keiko in our proprietary methods, wears neat company uniforms, and works under strict confidentiality. We treat your property with the same reverence and care we give our own homes.',
   },
   {
     category: 'Process & Pricing',

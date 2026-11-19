@@ -533,7 +533,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             Why We Always Assess In-Person First
           </p>
           <p className="font-sans text-[15px] sm:text-[16px] text-gray-600 leading-relaxed">
-            Every residence in Oahu has unique architectural finishes, custom stone, and coastal salt exposure. Alice visits your home personally to provide an honest, accurate, and fair proposal without hidden costs.
+            Every residence in Oahu has unique architectural finishes, custom stone, and coastal salt exposure. Alice Keiko visits your home personally to provide an honest, accurate, and fair proposal without hidden costs.
           </p>
         </div>
       </div>

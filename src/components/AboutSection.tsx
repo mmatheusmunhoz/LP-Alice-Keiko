@@ -26,10 +26,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onScrollToContact })
 
               <div className="absolute bottom-6 left-6 right-6 p-5 bg-black/80 backdrop-blur-xs border border-white/20">
                 <span className="font-caps text-xs tracking-[2px] uppercase text-aqua-light block font-bold mb-1">
-                  ESTABLISHED ON OʻAHU · 3+ YEARS OF TRUST
+                  SERVING OʻAHU · SINCE JUNE 2023
                 </span>
                 <p className="font-display text-lg sm:text-xl text-white font-semibold">
-                  Alice Keiko & Her 5-Person Specialist Team
+                  Alice Keiko & Her Dedicated Team
                 </p>
               </div>
             </div>
@@ -47,11 +47,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onScrollToContact })
 
             <div className="space-y-5 font-sans text-[16px] sm:text-[18px] leading-[1.75] text-white/90">
               <p>
-                Founded on the North Shore over 3 years ago, <strong className="text-white">Alice Keiko Organizing & Cleaning Services LLC</strong> has grown almost entirely through the personal recommendations of discerning homeowners and luxury vacation rental hosts.
+                Serving Oʻahu since June 2023, <strong className="text-white">Alice Keiko Organizing & Cleaning Services LLC</strong> has grown almost entirely through the personal recommendations of discerning homeowners and luxury vacation rental hosts.
               </p>
 
               <p>
-                We do not believe in cut-rate shortcuts or rotating strangers. Our boutique team of <strong className="text-white">5 specialists is personally trained and supervised by Alice</strong>. We arrive on time, respect your home’s privacy, and protect delicate custom marble, travertine, and architectural cabinetry with eco-botanical solutions.
+                We do not believe in cut-rate shortcuts or rotating strangers. Our dedicated team is <strong className="text-white">personally trained, uniformed, and supervised by Alice Keiko</strong>. We arrive on time, respect your home’s privacy, and protect delicate custom marble, travertine, and architectural cabinetry with eco-botanical solutions.
               </p>
             </div>
 
@@ -59,7 +59,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onScrollToContact })
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 my-8 pt-6 border-t border-white/15">
               <div className="flex items-center gap-2.5 text-[15px] text-gray-200">
                 <Check className="w-4 h-4 text-aqua-light stroke-[3]" />
-                <span>Personally Trained & Uniformed Staff</span>
+                <span>Trained & Supervised by Alice Keiko</span>
               </div>
               <div className="flex items-center gap-2.5 text-[15px] text-gray-200">
                 <Check className="w-4 h-4 text-aqua-light stroke-[3]" />

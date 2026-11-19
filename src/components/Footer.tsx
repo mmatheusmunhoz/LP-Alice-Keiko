@@ -63,7 +63,7 @@ export const Footer: React.FC<FooterProps> = ({ onScrollToContact }) => {
               <li><a href="#services" className="hover:text-aqua-light transition-colors">Services</a></li>
               <li><a href="#philosophy" className="hover:text-aqua-light transition-colors">5S Philosophy</a></li>
               <li><a href="#guarantee" className="hover:text-aqua-light transition-colors">24h Guarantee</a></li>
-              <li><a href="#about" className="hover:text-aqua-light transition-colors">About Alice</a></li>
+              <li><a href="#about" className="hover:text-aqua-light transition-colors">About Alice Keiko</a></li>
               <li><a href="#showcase" className="hover:text-aqua-light transition-colors">Before & After</a></li>
               <li><a href="#testimonials" className="hover:text-aqua-light transition-colors">Reviews</a></li>
               <li><a href="#faq" className="hover:text-aqua-light transition-colors">FAQ</a></li>
@@ -79,22 +79,10 @@ export const Footer: React.FC<FooterProps> = ({ onScrollToContact }) => {
             <p className="text-xs text-gray-400 font-sans mb-3">
               Headquartered on the North Shore, proudly serving the entire island of Oʻahu:
             </p>
-            <ul className="space-y-1 font-sans text-[14px] text-gray-300">
-              <li>• North Shore (Haleʻiwa, Waimea, Sunset)</li>
-              <li className="py-0.5">
-                • The Ritz-Carlton O‘ahu, Turtle Bay
-                <span className="block text-[11px] text-gray-400 pl-3 leading-snug">
-                  57-091 Kamehameha Highway, Kahuku, HI 96731, USA
-                </span>
-              </li>
-              <li>• Honolulu & Metro Enclaves</li>
-              <li>• Kahala & Diamond Head</li>
-              <li>• Lanikai & Kailua Residences</li>
-              <li>• Hawaii Kai & Portlock</li>
-              <li>• Waikiki Luxury Penthouses</li>
-              <li className="text-aqua-light text-xs pt-1">
-                * Neighbor islands serviced upon pre-arranged project assessment
-              </li>
+            <ul className="space-y-1.5 font-sans text-[14px] text-gray-300">
+              <li>• North Shore (from Mokulēʻia to Lāʻie)</li>
+              <li>• Honolulu</li>
+              <li>• Kailua</li>
             </ul>
           </div>
 

@@ -54,7 +54,7 @@ export const VacationRentalPage: React.FC<PageProps> = ({ onBackToHome, onOpenCo
         <div className="max-w-[1160px] w-[92%] mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-xs font-caps tracking-[1.5px] uppercase font-bold text-gray-800">
           <div className="flex items-center justify-center gap-2">
             <Clock className="w-4 h-4 text-[#0D9488]" />
-            <span>10:00 AM – 3:30 PM Turnaround</span>
+            <span>Check-Out to Check-In Turnaround</span>
           </div>
           <div className="flex items-center justify-center gap-2">
             <Bed className="w-4 h-4 text-[#0D9488]" />

@@ -6,37 +6,37 @@ export const JapanesePhilosophySection: React.FC = () => {
       step: '01',
       japanese: '整理',
       name: 'Seiri',
-      translation: 'Organization & Decluttering',
+      translation: 'Sort & Decluttering',
       image: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794870659/0101.jpg',
       isPhoto: true,
-      description: 'Clearing physical and mental clutter, distinguishing what is essential from what is excess to bring visual calm.',
+      description: 'Separating what is truly needed from what can be donated, discarded, or stored elsewhere so every space holds only what serves your home.',
     },
     {
       step: '02',
       japanese: '整頓',
       name: 'Seiton',
-      translation: 'Order & Systematic Placement',
+      translation: 'Set in Order',
       image: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794871511/WhatsApp_Image_2026-10-30_at_10.48.12_1.jpg',
       isPhoto: true,
-      description: 'Arranging closets, pantries, and living spaces so every single item has an intuitive, permanent home.',
+      description: 'Arranging closets, pantries, and living spaces so every item that stays has a defined place—easy to find, use, and put back.',
     },
     {
       step: '03',
       japanese: '清掃',
       name: 'Seiso',
-      translation: 'Cleanliness & Mindful Care',
+      translation: 'Shine & Mindful Care',
       image: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794870660/0303.webp',
       isPhoto: true,
-      description: 'Caring deeply for every detail—polishing glass, descaling fixtures, and inspecting the home’s overall health.',
+      description: 'Cleaning every space with care—polishing glass, descaling fixtures, and noticing when any area needs extra attention.',
     },
     {
       step: '04',
       japanese: '清潔',
       name: 'Seiketsu',
-      translation: 'Standardization & High Quality',
+      translation: 'Standardize & Consistency',
       image: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794870660/0404.jpg',
       isPhoto: true,
-      description: 'Through owner-trained specialists and checklists, ensuring an identical standard of perfection on every visit.',
+      description: 'Using clear routines and checklists so our team maintains a consistent standard of cleanliness and organization on every visit.',
     },
     {
       step: '05',
@@ -45,7 +45,7 @@ export const JapanesePhilosophySection: React.FC = () => {
       translation: 'Discipline & Daily Habit',
       image: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794870668/0505.jpg',
       isPhoto: true,
-      description: 'Practicing punctuality, honesty, and personal pride so that excellence becomes an enduring everyday practice.',
+      description: 'Turning the first four steps into lasting habits so your home stays clean, organized, and effortless to maintain over time.',
     },
   ];
 
@@ -99,10 +99,10 @@ export const JapanesePhilosophySection: React.FC = () => {
           </p>
         </div>
 
-        {/* Sticky Stacking Cards Container */}
-        <div className="w-full max-w-3xl mx-auto mb-16">
-          {/* Sticky Progress Bar + Counter */}
-          <div className="sticky top-[72px] md:top-[82px] z-30 bg-[#FAFAFA]/95 backdrop-blur-xs pt-3 pb-4 mb-5">
+        {/* 5S Cards Showcase: Mobile Sticky Portrait Deck (~360x540) · Desktop 330x440 Editorial Grid */}
+        <div className="w-full max-w-[390px] lg:max-w-[1060px] mx-auto mb-16">
+          {/* Sticky Progress Bar + Counter (Mobile / Tablet Sticky Stack) */}
+          <div className="lg:hidden sticky top-[72px] md:top-[82px] z-30 bg-[#FAFAFA]/95 backdrop-blur-xs pt-3 pb-4 mb-5">
             <div className="flex items-center justify-between mb-2.5 px-0.5">
               <span className="font-caps text-xs tracking-[2px] uppercase text-gray-600 font-bold">
                 THE 5S METHOD
@@ -133,11 +133,10 @@ export const JapanesePhilosophySection: React.FC = () => {
             </div>
           </div>
 
-          {/* Sticky Stacked 5 Principles Cards */}
-          <div className="relative pb-6">
+          {/* 5 Full-Bleed Photo Cards */}
+          <div className="relative pb-6 lg:pb-0 lg:flex lg:flex-wrap lg:justify-center lg:gap-7">
             {fiveSPrinciples.map((item, idx) => {
               const isActive = activeIdx === idx;
-              const isBehind = activeIdx > idx;
 
               return (
                 <div
@@ -145,72 +144,64 @@ export const JapanesePhilosophySection: React.FC = () => {
                   ref={(el) => {
                     cardRefs.current[idx] = el;
                   }}
-                  className="sticky transition-all duration-200"
+                  className="sticky lg:static transition-all duration-200 mb-10 last:mb-0 lg:mb-0 lg:w-[330px]"
                   style={{
-                    top: `${136 + idx * 12}px`,
+                    top: `${132 + idx * 10}px`,
                     zIndex: idx + 10,
-                    marginBottom: idx === fiveSPrinciples.length - 1 ? '0px' : '56px',
                   }}
                 >
                   <div
-                    className={`border p-6 sm:p-8 transition-all duration-300 ${
+                    className={`relative w-full min-h-[520px] sm:min-h-[540px] lg:min-h-[440px] rounded-[22px] overflow-hidden flex flex-col justify-between bg-[#031B1D] border transition-all duration-300 group ${
                       isActive
-                        ? 'bg-white border-[#0D9488]/60 shadow-[0_14px_32px_-8px_rgba(13,148,136,0.14),0_4px_12px_rgba(0,0,0,0.06)]'
-                        : isBehind
-                        ? 'bg-[#F0FDFA] border-[#2DD4BF]/50 shadow-[0_4px_12px_rgba(0,0,0,0.03)]'
-                        : 'bg-white border-gray-200/80 shadow-xs'
-                    }`}
+                        ? 'border-[#2DD4BF]/50 shadow-[0_22px_46px_-14px_rgba(3,27,29,0.5),0_6px_18px_rgba(0,0,0,0.16)]'
+                        : 'border-white/15 shadow-[0_14px_34px_-12px_rgba(3,27,29,0.38)]'
+                    } lg:border-white/15 lg:shadow-[0_18px_40px_-14px_rgba(3,27,29,0.42)] lg:hover:-translate-y-1 lg:hover:shadow-[0_26px_52px_-14px_rgba(3,27,29,0.55)]`}
                   >
-                    {/* Card Top: Step indicator */}
-                    <div className="flex items-center justify-between pb-3.5 border-b border-gray-100 mb-5">
-                      <div className="flex items-center gap-3">
-                        <span
-                          className={`font-caps text-xs tracking-[2px] uppercase font-bold px-2.5 py-1 transition-colors ${
-                            isActive
-                              ? 'bg-[#0D9488]/10 text-[#0D9488]'
-                              : 'bg-gray-100 text-gray-500'
-                          }`}
-                        >
-                          STEP {item.step}
-                        </span>
-                      </div>
+                    {/* Full-Bleed Background Photo (keeps face & action framed in upper half) */}
+                    <img
+                      src={item.image}
+                      alt={`${item.name} - ${item.translation}`}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                    />
 
-                      <span className="font-caps text-xs tracking-[1.5px] text-gray-400 font-bold tabular-nums">
+                    {/* Subtle Top Vignette for Badge & Counter Legibility */}
+                    <div
+                      className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#031B1D]/70 via-[#031B1D]/25 to-transparent pointer-events-none"
+                      aria-hidden="true"
+                    />
+
+                    {/* Petrol-Teal Bottom Gradient for Crisp Overlaid Typography */}
+                    <div
+                      className="absolute inset-x-0 bottom-0 h-[62%] bg-gradient-to-t from-[#02191B] via-[#042B2E]/95 via-45% to-transparent pointer-events-none"
+                      aria-hidden="true"
+                    />
+
+                    {/* Top Bar: Step Badge + Counter */}
+                    <div className="relative z-10 flex items-center justify-between p-5">
+                      <span className="inline-flex items-center px-3.5 py-1.5 rounded-[7px] bg-[#074446]/90 backdrop-blur-xs border border-white/15 font-caps text-[11px] sm:text-xs tracking-[2px] uppercase font-bold text-white shadow-xs">
+                        STEP {item.step}
+                      </span>
+
+                      <span className="font-caps text-sm font-bold tracking-[1.5px] text-white tabular-nums [text-shadow:0_1px_6px_rgba(0,0,0,0.45)]">
                         {idx + 1}/{fiveSPrinciples.length}
                       </span>
                     </div>
 
-                    {/* Card Content: Illustration + Text */}
-                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-                      <div
-                        className={`w-32 h-32 sm:w-40 sm:h-40 shrink-0 flex items-center justify-center bg-[#F8FAFC] border border-gray-100 overflow-hidden ${
-                          'isPhoto' in item && item.isPhoto ? '' : 'p-3'
-                        }`}
-                      >
-                        <img
-                          src={item.image}
-                          alt={`${item.name} - ${item.translation}`}
-                          loading="lazy"
-                          className={
-                            'isPhoto' in item && item.isPhoto
-                              ? 'w-full h-full object-cover object-center'
-                              : 'max-h-full max-w-full object-contain'
-                          }
-                        />
-                      </div>
+                    {/* Visual Breathing Space Preserving Upper-Half Photo Focus */}
+                    <div className="flex-1 min-h-[210px] sm:min-h-[225px] lg:min-h-[155px]" aria-hidden="true" />
 
-                      <div className="flex-1 text-center sm:text-left">
-                        <h3 className="font-display text-2xl sm:text-[26px] text-black font-semibold leading-tight mb-1.5">
-                          {item.name}
-                        </h3>
-                        <span className="font-caps text-xs tracking-[1.5px] uppercase text-[#0D9488] font-bold block mb-3.5">
-                          {item.translation}
-                        </span>
-
-                        <p className="font-sans text-[15px] sm:text-[16px] text-gray-700 leading-relaxed pt-3.5 border-t border-gray-100">
-                          {item.description}
-                        </p>
-                      </div>
+                    {/* Bottom Overlaid Text Content (HTML/CSS adapts cleanly to longer descriptions) */}
+                    <div className="relative z-10 px-6 pb-7 pt-3 text-left">
+                      <h3 className="font-display text-[32px] sm:text-[34px] lg:text-[30px] text-white font-semibold leading-[1.1] tracking-[-0.02em] mb-1.5">
+                        {item.name}
+                      </h3>
+                      <span className="font-caps text-[11.5px] sm:text-[12px] tracking-[2px] uppercase text-[#5EEAD4] font-bold block mb-3">
+                        {item.translation}
+                      </span>
+                      <p className="font-sans text-[14.5px] sm:text-[15px] lg:text-[14px] text-white/95 leading-[1.55] font-normal">
+                        {item.description}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -246,7 +237,7 @@ export const JapanesePhilosophySection: React.FC = () => {
               </h3>
 
               <p className="font-sans text-[16px] sm:text-[18px] text-gray-700 leading-relaxed max-w-2xl">
-                To us, cleaning is never simply about wiping a counter or vacuuming a rug. It is about honoring the private sanctuary where your life unfolds, protecting delicate architectural stones and finishes, and releasing the burden of daily maintenance so you can fully enjoy living in Hawaiʻi.
+                To us, cleaning is never simply about wiping a counter or vacuuming a rug. It is about clearing physical and mental clutter, honoring the private sanctuary where your life unfolds, protecting delicate architectural stones and finishes, and releasing the burden of daily maintenance.
               </p>
             </div>
 

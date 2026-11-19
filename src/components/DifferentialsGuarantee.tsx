@@ -84,7 +84,7 @@ export const DifferentialsGuarantee: React.FC<DifferentialsGuaranteeProps> = ({
 
             <div className="lg:col-span-4 bg-white p-7 border border-[#2DD4BF]/40 text-center shadow-xs">
               <span className="font-caps text-xs tracking-[2px] uppercase text-gray-600 font-bold block mb-2">
-                SPEAK DIRECTLY WITH ALICE
+                SPEAK DIRECTLY WITH ALICE KEIKO
               </span>
               <p className="font-display text-2xl sm:text-3xl text-black font-semibold mb-1 tabular-nums">
                 (808) 218-2515

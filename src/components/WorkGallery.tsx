@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, ChevronLeft, ChevronRight, Expand, X } from 'lucide-react';
 
 interface WorkGalleryProps {
@@ -57,11 +57,33 @@ const ALICE_WORK_PHOTOS: WorkPhoto[] = [
     src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794870154/9.jpg',
     alt: 'Alice Keiko residential cleaning and detailing project 09 on Oʻahu',
   },
+  {
+    id: 'work-10',
+    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1795097125/WhatsApp_Image_2026-11-18_at_01.32.18_7.jpg',
+    alt: 'Alice Keiko residential cleaning and detailing project 10 on Oʻahu',
+  },
+  {
+    id: 'work-11',
+    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1795097126/WhatsApp_Image_2026-11-18_at_01.32.18_2.jpg',
+    alt: 'Alice Keiko residential cleaning and detailing project 11 on Oʻahu',
+  },
+  {
+    id: 'work-12',
+    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1795097126/WhatsApp_Image_2026-11-18_at_01.32.18_1.jpg',
+    alt: 'Alice Keiko residential cleaning and detailing project 12 on Oʻahu',
+  },
+  {
+    id: 'work-13',
+    src: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1795097127/WhatsApp_Image_2026-11-18_at_01.32.18.jpg',
+    alt: 'Alice Keiko residential cleaning and detailing project 13 on Oʻahu',
+  },
 ];
 
 export const WorkGallery: React.FC<WorkGalleryProps> = ({ onScrollToContact }) => {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [activeIdx, setActiveIdx] = useState(0);
+  const thumbStripRef = useRef<HTMLDivElement | null>(null);
+  const thumbRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const currentPhoto = ALICE_WORK_PHOTOS[activeIdx];
 
@@ -102,6 +124,29 @@ export const WorkGallery: React.FC<WorkGalleryProps> = ({ onScrollToContact }) =
     }
   };
 
+  useEffect(() => {
+    const container = thumbStripRef.current;
+    const activeThumb = thumbRefs.current[activeIdx];
+    if (!container || !activeThumb) return;
+
+    const targetLeft =
+      activeThumb.offsetLeft - (container.clientWidth - activeThumb.clientWidth) / 2;
+    container.scrollTo({
+      left: Math.max(0, targetLeft),
+      behavior: 'smooth',
+    });
+  }, [activeIdx]);
+
+  const scrollThumbStrip = (direction: 'prev' | 'next') => {
+    const container = thumbStripRef.current;
+    if (!container) return;
+    const step = Math.max(220, container.clientWidth * 0.65);
+    container.scrollBy({
+      left: direction === 'next' ? step : -step,
+      behavior: 'smooth',
+    });
+  };
+
   const activeLightboxPhoto =
     lightboxIndex !== null ? ALICE_WORK_PHOTOS[lightboxIndex] : null;
 
@@ -113,7 +158,7 @@ export const WorkGallery: React.FC<WorkGalleryProps> = ({ onScrollToContact }) =
           IN THE FIELD · RECENT PROJECTS
         </span>
         <h3 className="font-display text-[32px] sm:text-[40px] md:text-[44px] font-semibold leading-[1.2] text-[#0A0A0A] tracking-[-0.02em] text-balance">
-          Work Completed by Alice & Her Team
+          Work Completed by Alice Keiko & Her Team
         </h3>
         <div className="w-16 h-[2px] bg-[#0D9488] mx-auto mt-4" />
       </div>
@@ -146,8 +191,8 @@ export const WorkGallery: React.FC<WorkGalleryProps> = ({ onScrollToContact }) =
           </div>
         </div>
 
-        {/* Right Column: Main Showcase Display + 9-Photo Thumbnail Strip */}
-        <div className="lg:col-span-7 w-full">
+        {/* Right Column: Main Showcase Display + 1-Row Carousel Thumbnail Strip */}
+        <div className="lg:col-span-7 w-full min-w-0">
           {/* Main Showcase Frame */}
           <div className="relative aspect-[4/3] bg-gray-100 border border-gray-200 overflow-hidden shadow-xs group">
             <img
@@ -187,37 +232,61 @@ export const WorkGallery: React.FC<WorkGalleryProps> = ({ onScrollToContact }) =
             </button>
           </div>
 
-          {/* Thumbnail Strip: Horizontal Scroll on Mobile, Clean 9-Tile Row on Desktop */}
-          <div
-            className="mt-3 flex lg:grid lg:grid-cols-9 gap-2 lg:gap-1.5 overflow-x-auto pb-1 lg:pb-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-            role="tablist"
-            aria-label="Completed project photos thumbnails"
-          >
-            {ALICE_WORK_PHOTOS.map((photo, idx) => {
-              const isSelected = activeIdx === idx;
-              return (
-                <button
-                  key={photo.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={isSelected}
-                  aria-label={`View project photo ${idx + 1}`}
-                  onClick={() => setActiveIdx(idx)}
-                  className={`relative w-16 h-16 sm:w-[72px] sm:h-[72px] lg:w-full lg:h-auto lg:aspect-square shrink-0 overflow-hidden border transition-all duration-200 cursor-pointer bg-gray-100 ${
-                    isSelected
-                      ? 'border-[#0D9488] ring-2 ring-[#0D9488] opacity-100'
-                      : 'border-gray-200 opacity-60 hover:opacity-100 hover:border-gray-400'
-                  }`}
-                >
-                  <img
-                    src={photo.src}
-                    alt={photo.alt}
-                    loading="lazy"
-                    className="w-full h-full object-cover"
-                  />
-                </button>
-              );
-            })}
+          {/* Single-Row Thumbnail Carousel (Mobile & Desktop) */}
+          <div className="mt-3 flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => scrollThumbStrip('prev')}
+              aria-label="Scroll project thumbnails left"
+              className="hidden lg:flex w-8 h-16 shrink-0 bg-white hover:bg-[#0D9488] text-gray-700 hover:text-white border border-gray-200 items-center justify-center transition-colors cursor-pointer"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+
+            <div
+              ref={thumbStripRef}
+              className="flex flex-nowrap gap-2 overflow-x-auto py-0.5 flex-1 scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              role="tablist"
+              aria-label="Completed project photos thumbnails"
+            >
+              {ALICE_WORK_PHOTOS.map((photo, idx) => {
+                const isSelected = activeIdx === idx;
+                return (
+                  <button
+                    key={photo.id}
+                    ref={(el) => {
+                      thumbRefs.current[idx] = el;
+                    }}
+                    type="button"
+                    role="tab"
+                    aria-selected={isSelected}
+                    aria-label={`View project photo ${idx + 1}`}
+                    onClick={() => setActiveIdx(idx)}
+                    className={`relative w-16 h-16 sm:w-[72px] sm:h-[72px] lg:w-16 lg:h-16 shrink-0 overflow-hidden border transition-all duration-200 cursor-pointer bg-gray-100 ${
+                      isSelected
+                        ? 'border-[#0D9488] ring-2 ring-[#0D9488] opacity-100'
+                        : 'border-gray-200 opacity-60 hover:opacity-100 hover:border-gray-400'
+                    }`}
+                  >
+                    <img
+                      src={photo.src}
+                      alt={photo.alt}
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                );
+              })}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => scrollThumbStrip('next')}
+              aria-label="Scroll project thumbnails right"
+              className="hidden lg:flex w-8 h-16 shrink-0 bg-white hover:bg-[#0D9488] text-gray-700 hover:text-white border border-gray-200 items-center justify-center transition-colors cursor-pointer"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </div>

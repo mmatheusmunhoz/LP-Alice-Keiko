@@ -32,7 +32,7 @@ export const FAQSection: React.FC = () => {
                 Have a unique property or specific requirement?
               </span>
               <p className="font-sans text-sm sm:text-[15px] text-gray-700 leading-relaxed">
-                Alice answers questions personally and can discuss delicate antiques, stone care, or custom recurring intervals.
+                Alice Keiko answers questions personally and can discuss delicate antiques, stone care, or custom recurring intervals.
               </p>
               <button
                 type="button"

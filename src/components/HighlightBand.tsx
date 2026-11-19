@@ -27,7 +27,7 @@ export const HighlightBand: React.FC = () => {
 
           {/* Subline highlighting the client's business model */}
           <p className="font-sans text-[15px] sm:text-[16px] text-gray-600 mt-2 max-w-3xl mx-auto">
-            We evaluate each property in-person to craft a customized scope. No shortcuts, no generic subcontracts—every home is cared for by Alice and her hand-trained team.
+            We evaluate each property in-person to craft a customized scope. No shortcuts, no generic subcontracts—every home is cared for by Alice Keiko and her hand-trained team.
           </p>
 
           {/* 4 Feature Pillars */}
@@ -35,11 +35,13 @@ export const HighlightBand: React.FC = () => {
             {/* Metric 1 */}
             <div className="flex flex-col items-center text-center">
               <Clock className="w-5 h-5 text-[#0D9488] mb-2" />
-              <span className="font-display text-2xl sm:text-3xl font-semibold text-black tabular-nums">3.4 Years</span>
-              <span className="font-caps text-xs sm:text-sm tracking-[1.5px] uppercase text-gray-900 mt-1 font-bold">
+              <span className="font-display text-xl sm:text-2xl font-semibold text-black leading-tight">
+                Since June 2023
+              </span>
+              <span className="font-caps text-xs sm:text-sm tracking-[1.5px] uppercase text-gray-900 mt-1.5 font-bold">
                 Word-of-Mouth Trust
               </span>
-              <span className="text-sm text-gray-600 font-sans mt-0.5">
+              <span className="text-sm text-gray-600 font-sans mt-0.5 leading-snug">
                 Client-referred islandwide
               </span>
             </div>
@@ -59,11 +61,13 @@ export const HighlightBand: React.FC = () => {
             {/* Metric 3 */}
             <div className="flex flex-col items-center text-center">
               <HeartHandshake className="w-5 h-5 text-[#0D9488] mb-2" />
-              <span className="font-display text-2xl sm:text-3xl font-semibold text-black">5 + Alice</span>
-              <span className="font-caps text-xs sm:text-sm tracking-[1.5px] uppercase text-gray-900 mt-1 font-bold">
-                Owner-Trained Team
+              <span className="font-display text-xl sm:text-2xl font-semibold text-black leading-tight">
+                Trained by Alice Keiko
               </span>
-              <span className="text-sm text-gray-600 font-sans mt-0.5">
+              <span className="font-caps text-xs sm:text-sm tracking-[1.5px] uppercase text-gray-900 mt-1.5 font-bold">
+                Dedicated Team
+              </span>
+              <span className="text-sm text-gray-600 font-sans mt-0.5 leading-snug">
                 Uniformed & supervised
               </span>
             </div>
