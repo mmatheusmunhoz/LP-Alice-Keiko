@@ -37,7 +37,7 @@ export const FAQSection: React.FC = () => {
               <button
                 type="button"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="w-full inline-flex items-center justify-center gap-2 py-3.5 bg-[#0D9488] hover:bg-[#0F766E] text-white font-caps text-xs sm:text-[13px] tracking-[1.5px] uppercase font-bold transition-colors cursor-pointer"
+                className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-[8px] bg-[#0D9488] hover:bg-[#0F766E] text-white font-caps text-xs sm:text-[13px] tracking-[1.5px] uppercase font-bold transition-colors cursor-pointer"
               >
                 <span>CONTACT TODAY</span>
                 <ArrowRight className="w-4 h-4" />

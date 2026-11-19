@@ -44,7 +44,7 @@ export const Hero: React.FC<HeroProps> = ({ onScrollToContact }) => {
           <button
             onClick={onScrollToContact}
             type="button"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-[#0D9488] hover:bg-[#0F766E] text-white font-caps font-bold text-[14px] sm:text-[15px] tracking-[2px] uppercase border border-teal-400/30 rounded-none shadow-xl transition-all duration-200 cursor-pointer group"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-[#0D9488] hover:bg-[#0F766E] text-white font-caps font-bold text-[14px] sm:text-[15px] tracking-[2px] uppercase border border-teal-400/30 rounded-[8px] shadow-xl transition-all duration-200 cursor-pointer group"
           >
             <span>CONTACT US TODAY</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />

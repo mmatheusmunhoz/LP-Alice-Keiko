@@ -1,5 +1,5 @@
 import React from 'react';
-import { Check, ArrowRight } from 'lucide-react';
+import { UserCheck, ShieldCheck, MapPin, Clock, ArrowRight } from 'lucide-react';
 
 interface AboutSectionProps {
   onScrollToContact: () => void;
@@ -55,22 +55,30 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onScrollToContact })
               </p>
             </div>
 
-            {/* Credential Checkmarks */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 my-8 pt-6 border-t border-white/15">
-              <div className="flex items-center gap-2.5 text-[15px] text-gray-200">
-                <Check className="w-4 h-4 text-aqua-light stroke-[3]" />
+            {/* Credential Highlights */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-8 pt-6 border-t border-white/15">
+              <div className="flex items-center gap-3 text-[15px] text-gray-200 leading-snug">
+                <span className="w-8 h-8 rounded-full bg-[#0D9488]/15 border border-[#2DD4BF]/30 flex items-center justify-center shrink-0">
+                  <UserCheck className="w-4 h-4 text-[#5EEAD4] stroke-[2.2]" />
+                </span>
                 <span>Trained & Supervised by Alice Keiko</span>
               </div>
-              <div className="flex items-center gap-2.5 text-[15px] text-gray-200">
-                <Check className="w-4 h-4 text-aqua-light stroke-[3]" />
+              <div className="flex items-center gap-3 text-[15px] text-gray-200 leading-snug">
+                <span className="w-8 h-8 rounded-full bg-[#0D9488]/15 border border-[#2DD4BF]/30 flex items-center justify-center shrink-0">
+                  <ShieldCheck className="w-4 h-4 text-[#5EEAD4] stroke-[2.2]" />
+                </span>
                 <span>Full $5M Liability & Bonding</span>
               </div>
-              <div className="flex items-center gap-2.5 text-[15px] text-gray-200">
-                <Check className="w-4 h-4 text-aqua-light stroke-[3]" />
+              <div className="flex items-center gap-3 text-[15px] text-gray-200 leading-snug">
+                <span className="w-8 h-8 rounded-full bg-[#0D9488]/15 border border-[#2DD4BF]/30 flex items-center justify-center shrink-0">
+                  <MapPin className="w-4 h-4 text-[#5EEAD4] stroke-[2.2]" />
+                </span>
                 <span>North Shore HQ · Islandwide Service</span>
               </div>
-              <div className="flex items-center gap-2.5 text-[15px] text-gray-200">
-                <Check className="w-4 h-4 text-aqua-light stroke-[3]" />
+              <div className="flex items-center gap-3 text-[15px] text-gray-200 leading-snug">
+                <span className="w-8 h-8 rounded-full bg-[#0D9488]/15 border border-[#2DD4BF]/30 flex items-center justify-center shrink-0">
+                  <Clock className="w-4 h-4 text-[#5EEAD4] stroke-[2.2]" />
+                </span>
                 <span>24-Hour Return & Rectify Guarantee</span>
               </div>
             </div>
@@ -80,7 +88,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onScrollToContact })
               <button
                 onClick={onScrollToContact}
                 type="button"
-                className="inline-flex items-center gap-2.5 px-7 py-4 bg-[#0D9488] hover:bg-[#0F766E] text-white font-caps text-xs sm:text-[13px] tracking-[1.5px] uppercase font-bold transition-all shadow-md cursor-pointer"
+                className="inline-flex items-center gap-2.5 px-7 py-4 rounded-[8px] bg-[#0D9488] hover:bg-[#0F766E] text-white font-caps text-xs sm:text-[13px] tracking-[1.5px] uppercase font-bold transition-all shadow-md cursor-pointer"
               >
                 <span>CONTACT TODAY</span>
                 <ArrowRight className="w-4 h-4" />

@@ -214,7 +214,7 @@ export const Footer: React.FC<FooterProps> = ({ onScrollToContact }) => {
             <div className="mt-6 pt-4 border-t border-gray-200 text-right">
               <button
                 onClick={() => setModalPolicy(null)}
-                className="px-6 py-2 bg-black text-white font-caps text-xs tracking-[1px] uppercase font-bold"
+                className="px-6 py-2 rounded-[8px] bg-black text-white font-caps text-xs tracking-[1px] uppercase font-bold cursor-pointer"
               >
                 Close
               </button>

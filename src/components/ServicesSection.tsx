@@ -140,7 +140,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             <button
               key={tab.id}
               onClick={() => handleCategoryClick(tab.id)}
-              className={`px-5 py-3 font-caps text-xs sm:text-[13px] tracking-[1.5px] uppercase font-bold transition-all border cursor-pointer flex items-center gap-2 ${
+              className={`px-5 py-3 rounded-[8px] font-caps text-xs sm:text-[13px] tracking-[1.5px] uppercase font-bold transition-all border cursor-pointer flex items-center gap-2 ${
                 activeCategory === tab.id
                   ? 'bg-black text-white border-black shadow-sm'
                   : 'bg-white text-gray-800 border-gray-200 hover:border-[#0D9488] hover:text-[#0D9488]'
@@ -184,7 +184,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
               onClick={() => scrollToMobileCard(mobileActiveIndex - 1)}
               disabled={mobileActiveIndex === 0}
               aria-label="Previous service"
-              className={`absolute left-2 top-[100px] -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-white/95 backdrop-blur-xs border border-gray-200 shadow-lg flex items-center justify-center text-black transition-all cursor-pointer ${
+              className={`absolute left-2 top-[34%] -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-white/95 backdrop-blur-xs border border-gray-200 shadow-lg flex items-center justify-center text-black transition-all cursor-pointer ${
                 mobileActiveIndex === 0
                   ? 'opacity-0 pointer-events-none'
                   : 'opacity-100 hover:bg-[#0D9488] hover:text-white hover:border-[#0D9488]'
@@ -199,7 +199,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
               onClick={() => scrollToMobileCard(mobileActiveIndex + 1)}
               disabled={mobileActiveIndex === filteredServices.length - 1}
               aria-label="Next service"
-              className={`absolute right-2 top-[100px] -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-white/95 backdrop-blur-xs border border-gray-200 shadow-lg flex items-center justify-center text-black transition-all cursor-pointer ${
+              className={`absolute right-2 top-[34%] -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-white/95 backdrop-blur-xs border border-gray-200 shadow-lg flex items-center justify-center text-black transition-all cursor-pointer ${
                 mobileActiveIndex === filteredServices.length - 1
                   ? 'opacity-0 pointer-events-none'
                   : 'opacity-100 hover:bg-[#0D9488] hover:text-white hover:border-[#0D9488]'
@@ -211,83 +211,103 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             <div
               ref={mobileCarouselRef}
               onScroll={handleMobileScroll}
-              className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-[9vw] sm:px-8 pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-[7vw] sm:px-8 pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               role="region"
               aria-label="Services carousel"
             >
-              {filteredServices.map((service, index) => (
-              <div
-                key={service.id}
-                ref={(el) => {
-                  mobileCardRefs.current[index] = el;
-                }}
-                className="w-[82vw] max-w-[330px] shrink-0 snap-center bg-white border border-gray-200/90 shadow-sm flex flex-col justify-between overflow-hidden"
-              >
-                <div>
-                  {/* Photo Header */}
-                  <div className="relative h-[200px] overflow-hidden bg-gray-100">
+              {filteredServices.map((service, index) => {
+                const isCardActive = mobileActiveIndex === index;
+
+                return (
+                  <div
+                    key={service.id}
+                    ref={(el) => {
+                      mobileCardRefs.current[index] = el;
+                    }}
+                    className={`relative w-[86vw] max-w-[360px] min-h-[540px] sm:min-h-[560px] shrink-0 snap-center rounded-[22px] overflow-hidden flex flex-col justify-between bg-[#031B1D] border transition-all duration-300 ${
+                      isCardActive
+                        ? 'border-[#2DD4BF]/50 shadow-[0_22px_46px_-14px_rgba(3,27,29,0.5),0_6px_18px_rgba(0,0,0,0.16)]'
+                        : 'border-white/15 shadow-[0_14px_34px_-12px_rgba(3,27,29,0.38)]'
+                    }`}
+                  >
+                    {/* Full-Bleed Background Photo */}
                     <img
                       src={service.image}
                       alt={service.imageAlt}
                       loading="lazy"
-                      className="w-full h-full object-cover"
+                      className="absolute inset-0 w-full h-full object-cover object-center"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
-                    <div className="absolute top-3 left-3 bg-black/85 text-white px-2.5 py-1 font-caps text-[10px] tracking-[1.5px] uppercase font-bold">
-                      {service.badge}
+
+                    {/* Subtle Top Vignette for Badge & Counter Legibility */}
+                    <div
+                      className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#031B1D]/70 via-[#031B1D]/25 to-transparent pointer-events-none"
+                      aria-hidden="true"
+                    />
+
+                    {/* Petrol-Teal Bottom Gradient for Crisp Overlaid Typography & Actions */}
+                    <div
+                      className="absolute inset-x-0 bottom-0 h-[74%] bg-gradient-to-t from-[#02191B] via-[#042B2E]/95 via-55% to-transparent pointer-events-none"
+                      aria-hidden="true"
+                    />
+
+                    {/* Top Bar: Service Badge + Counter */}
+                    <div className="relative z-10 flex items-center justify-between p-5">
+                      <span className="inline-flex items-center px-3 py-1.5 rounded-[7px] bg-[#074446]/90 backdrop-blur-xs border border-white/15 font-caps text-[10.5px] tracking-[1.8px] uppercase font-bold text-white shadow-xs">
+                        {service.badge}
+                      </span>
+
+                      <span className="font-caps text-sm font-bold tracking-[1.5px] text-white tabular-nums [text-shadow:0_1px_6px_rgba(0,0,0,0.45)]">
+                        {index + 1}/{filteredServices.length}
+                      </span>
                     </div>
-                    <div className="absolute top-3 right-3 bg-white/95 text-black px-2 py-0.5 font-caps text-[11px] tracking-[1.5px] font-bold">
-                      {String(index + 1).padStart(2, '0')}
+
+                    {/* Visual Breathing Space Preserving Upper Photo Focus */}
+                    <div className="flex-1 min-h-[175px] sm:min-h-[195px]" aria-hidden="true" />
+
+                    {/* Bottom Overlaid Text Content & Responsive Actions */}
+                    <div className="relative z-10 px-5 pb-6 pt-3 text-left flex flex-col">
+                      <h3 className="font-display text-[25px] sm:text-[27px] text-white font-semibold leading-[1.12] tracking-[-0.02em] mb-1.5">
+                        {service.title}
+                      </h3>
+                      <span className="font-caps text-[11px] sm:text-[11.5px] tracking-[2px] uppercase text-[#5EEAD4] font-bold block mb-2.5">
+                        {service.subtitle}
+                      </span>
+                      <p className="font-sans text-[14px] sm:text-[14.5px] text-white/95 leading-[1.55] font-normal mb-4">
+                        {service.shortDescription}
+                      </p>
+
+                      <button
+                        type="button"
+                        onClick={() => setModalService(service)}
+                        className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-3.5 rounded-[8px] bg-white/10 hover:bg-white/15 backdrop-blur-xs border border-[#5EEAD4]/40 text-[#5EEAD4] hover:text-white font-caps text-[11px] tracking-[1.3px] uppercase font-bold transition-colors cursor-pointer mb-2.5"
+                      >
+                        <ListChecks className="w-4 h-4 text-[#5EEAD4]" />
+                        <span>View Full Checklist ({service.checklist.length} tasks)</span>
+                      </button>
+
+                      <button
+                        onClick={() => onSelectServiceForQuote(service.title)}
+                        type="button"
+                        className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-[8px] bg-[#0D9488] hover:bg-[#0F766E] text-white font-caps text-[11px] tracking-[1.5px] uppercase font-bold transition-colors cursor-pointer shadow-sm"
+                      >
+                        <span>CONTACT TODAY</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </button>
+
+                      {onNavigateToPage && (
+                        <button
+                          onClick={() => onNavigateToPage(service.category)}
+                          type="button"
+                          className="w-full mt-2.5 text-center font-caps text-[11px] tracking-[1.5px] uppercase text-white/80 hover:text-[#5EEAD4] font-bold flex items-center justify-center gap-1 transition-colors cursor-pointer"
+                        >
+                          <span>Open Dedicated Page</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </button>
+                      )}
                     </div>
                   </div>
-
-                  {/* Card Body - Minimal, Clean & Readable */}
-                  <div className="p-5 flex flex-col">
-                    <span className="font-caps text-[11px] tracking-[1.8px] uppercase text-[#0D9488] font-bold block mb-1">
-                      {service.subtitle}
-                    </span>
-                    <h3 className="font-display text-[20px] text-[#0A0A0A] font-semibold leading-snug mb-2">
-                      {service.title}
-                    </h3>
-                    <p className="font-sans text-[14.5px] text-gray-600 leading-relaxed mb-4">
-                      {service.shortDescription}
-                    </p>
-
-                    <button
-                      type="button"
-                      onClick={() => setModalService(service)}
-                      className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-3.5 bg-[#F0FDFA] hover:bg-[#CCFBF1] border border-[#0D9488]/30 text-[#0F766E] font-caps text-[11px] tracking-[1.3px] uppercase font-bold transition-colors cursor-pointer"
-                    >
-                      <ListChecks className="w-4 h-4 text-[#0D9488]" />
-                      <span>View Full Checklist ({service.checklist.length} tasks)</span>
-                    </button>
-                  </div>
-                </div>
-
-                {/* Card Footer Actions */}
-                <div className="px-5 pb-5 pt-3 border-t border-gray-100">
-                  <button
-                    onClick={() => onSelectServiceForQuote(service.title)}
-                    type="button"
-                    className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 bg-[#0D9488] hover:bg-[#0F766E] text-white font-caps text-[11px] tracking-[1.5px] uppercase font-bold transition-colors cursor-pointer"
-                  >
-                    <span>CONTACT TODAY</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-
-                  {onNavigateToPage && (
-                    <button
-                      onClick={() => onNavigateToPage(service.category)}
-                      type="button"
-                      className="w-full mt-2.5 text-center font-caps text-[11px] tracking-[1.5px] uppercase text-gray-600 hover:text-[#0D9488] font-bold flex items-center justify-center gap-1 transition-colors cursor-pointer"
-                    >
-                      <span>Open Dedicated Page</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </button>
-                  )}
-                </div>
-              </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
@@ -420,7 +440,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                         e.stopPropagation();
                         onNavigateToPage(service.category);
                       }}
-                      className="inline-flex items-center gap-1.5 px-3 py-1 bg-black/75 hover:bg-white hover:text-black text-white border border-white/25 font-caps text-[11px] tracking-[1.2px] uppercase font-bold transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[8px] bg-black/75 hover:bg-white hover:text-black text-white border border-white/25 font-caps text-[11px] tracking-[1.2px] uppercase font-bold transition-colors cursor-pointer"
                     >
                       <span>Full Guide</span>
                       <ExternalLink className="w-3 h-3" />
@@ -456,7 +476,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                           e.stopPropagation();
                           setModalService(service);
                         }}
-                        className="inline-flex items-center gap-2 py-2 px-3.5 bg-white/10 hover:bg-white/20 border border-white/20 font-caps text-xs tracking-[1.2px] uppercase text-aqua-light hover:text-white font-bold transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-2 py-2 px-3.5 rounded-[8px] bg-white/10 hover:bg-white/20 border border-white/20 font-caps text-xs tracking-[1.2px] uppercase text-aqua-light hover:text-white font-bold transition-colors cursor-pointer"
                       >
                         <ListChecks className="w-4 h-4" />
                         <span>View Full Checklist ({service.checklist.length} tasks)</span>
@@ -468,7 +488,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                       <button
                         type="button"
                         onClick={() => onSelectServiceForQuote(service.title)}
-                        className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 bg-[#0D9488] hover:bg-[#0F766E] text-white font-caps text-xs tracking-[1.5px] uppercase font-bold transition-colors shadow-md cursor-pointer"
+                        className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-[8px] bg-[#0D9488] hover:bg-[#0F766E] text-white font-caps text-xs tracking-[1.5px] uppercase font-bold transition-colors shadow-md cursor-pointer"
                       >
                         <span>CONTACT TODAY</span>
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -629,7 +649,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                     setModalService(null);
                     onSelectServiceForQuote(title);
                   }}
-                  className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-5 bg-[#0D9488] hover:bg-[#0F766E] text-white font-caps text-xs tracking-[1.5px] uppercase font-bold transition-colors cursor-pointer"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-5 rounded-[8px] bg-[#0D9488] hover:bg-[#0F766E] text-white font-caps text-xs tracking-[1.5px] uppercase font-bold transition-colors cursor-pointer"
                 >
                   <span>CONTACT TODAY</span>
                   <ArrowRight className="w-4 h-4" />

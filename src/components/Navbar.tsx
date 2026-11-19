@@ -126,7 +126,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuoteModal }) => {
             <button
               type="button"
               onClick={() => onOpenQuoteModal()}
-              className="inline-flex items-center gap-1.5 xl:gap-2 px-3.5 xl:px-4 py-2 bg-[#0D9488] hover:bg-[#0F766E] text-white text-[11px] xl:text-xs font-caps tracking-[1.3px] xl:tracking-[1.5px] uppercase font-bold transition-all ml-2 xl:ml-3 shadow-xs cursor-pointer whitespace-nowrap"
+              className="inline-flex items-center gap-1.5 xl:gap-2 px-3.5 xl:px-4 py-2 rounded-[8px] bg-[#0D9488] hover:bg-[#0F766E] text-white text-[11px] xl:text-xs font-caps tracking-[1.3px] xl:tracking-[1.5px] uppercase font-bold transition-all ml-2 xl:ml-3 shadow-xs cursor-pointer whitespace-nowrap"
             >
               <span>CONTACT TODAY</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -138,7 +138,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuoteModal }) => {
             <button
               type="button"
               onClick={() => onOpenQuoteModal()}
-              className="px-2 py-2 sm:px-3 sm:py-2 bg-[#0D9488] hover:bg-[#0F766E] text-white text-[8.5px] sm:text-[11px] font-caps tracking-[0.45px] sm:tracking-[1.2px] uppercase font-bold leading-none flex items-center gap-1 cursor-pointer whitespace-nowrap"
+              className="px-2 py-2 sm:px-3 sm:py-2 rounded-[8px] bg-[#0D9488] hover:bg-[#0F766E] text-white text-[8.5px] sm:text-[11px] font-caps tracking-[0.45px] sm:tracking-[1.2px] uppercase font-bold leading-none flex items-center gap-1 cursor-pointer whitespace-nowrap"
             >
               <span>CONTACT TODAY</span>
             </button>
@@ -208,7 +208,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuoteModal }) => {
                   setMobileMenuOpen(false);
                   onOpenQuoteModal();
                 }}
-                className="w-full flex items-center justify-center gap-2 py-3.5 bg-[#0D9488] hover:bg-[#0F766E] text-white font-caps text-xs tracking-[1.5px] uppercase font-bold shadow-sm cursor-pointer"
+                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-[8px] bg-[#0D9488] hover:bg-[#0F766E] text-white font-caps text-xs tracking-[1.5px] uppercase font-bold shadow-sm cursor-pointer"
               >
                 <span>CONTACT TODAY</span>
                 <ArrowRight className="w-4 h-4" />

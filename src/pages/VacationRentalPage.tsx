@@ -40,7 +40,7 @@ export const VacationRentalPage: React.FC<PageProps> = ({ onBackToHome, onOpenCo
             <button
               onClick={() => onOpenContact('Vacation Rental & Airbnb Turnover')}
               type="button"
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#0D9488] hover:bg-[#0F766E] text-white font-caps text-xs tracking-[1.5px] uppercase font-bold transition-colors shadow-md cursor-pointer"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[8px] bg-[#0D9488] hover:bg-[#0F766E] text-white font-caps text-xs tracking-[1.5px] uppercase font-bold transition-colors shadow-md cursor-pointer"
             >
               <span>CONTACT TODAY</span>
               <ArrowRight className="w-4 h-4" />
@@ -147,7 +147,7 @@ export const VacationRentalPage: React.FC<PageProps> = ({ onBackToHome, onOpenCo
                     <button
                       onClick={() => onOpenContact(service.title)}
                       type="button"
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-[#0D9488] hover:bg-[#0F766E] text-white font-caps text-xs tracking-[1.5px] uppercase font-bold transition-colors shadow-xs cursor-pointer"
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-[8px] bg-[#0D9488] hover:bg-[#0F766E] text-white font-caps text-xs tracking-[1.5px] uppercase font-bold transition-colors shadow-xs cursor-pointer"
                     >
                       <span>CONTACT TODAY</span>
                       <ArrowRight className="w-4 h-4" />

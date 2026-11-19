@@ -5,19 +5,22 @@ import { COMPANY_INFO } from '../data';
 export const HighlightBand: React.FC = () => {
   return (
     <section className="relative z-20 max-w-[1160px] w-[92%] mx-auto -mt-10 sm:-mt-14 mb-8">
-      <div className="bg-white shadow-band px-6 sm:px-12 py-8 sm:py-10 text-center border border-black/5 relative overflow-hidden">
-        {/* Subtle Alice Keiko Watermark Logo */}
+      <div className="bg-gradient-to-br from-white via-[#F6FCFB] to-[#EAF7F5] shadow-[0_22px_54px_-16px_rgba(4,43,46,0.14),0_6px_20px_-6px_rgba(13,148,136,0.08)] ring-1 ring-inset ring-white/85 px-6 sm:px-12 py-8 sm:py-10 text-center border border-[#0D9488]/15 relative overflow-hidden">
+        {/* Delicate Luxury Top Accent Hairline */}
         <div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-64 sm:w-80 md:w-96 aspect-square pointer-events-none select-none opacity-[0.03] z-0 flex items-center justify-center"
+          className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#0D9488]/65 to-transparent pointer-events-none"
           aria-hidden="true"
-        >
-          <img
-            src="/assets/logo.webp"
-            alt=""
-            className="w-full h-full object-contain rounded-2xl filter grayscale"
-            loading="lazy"
-          />
-        </div>
+        />
+
+        {/* Soft Ambient Light Washes for Subtle Depth */}
+        <div
+          className="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-[radial-gradient(circle,rgba(13,148,136,0.09)_0%,rgba(13,148,136,0)_70%)] pointer-events-none"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute -bottom-28 -right-24 w-80 h-80 rounded-full bg-[radial-gradient(circle,rgba(4,43,46,0.06)_0%,rgba(4,43,46,0)_70%)] pointer-events-none"
+          aria-hidden="true"
+        />
 
         <div className="relative z-10">
           {/* Title in Montserrat CAPS tracking 3px */}
@@ -31,10 +34,12 @@ export const HighlightBand: React.FC = () => {
           </p>
 
           {/* 4 Feature Pillars */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 mt-8 pt-8 border-t border-gray-100">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 mt-8 pt-8 border-t border-[#0D9488]/15">
             {/* Metric 1 */}
             <div className="flex flex-col items-center text-center">
-              <Clock className="w-5 h-5 text-[#0D9488] mb-2" />
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0D9488]/15 to-[#0D9488]/5 border border-[#0D9488]/20 flex items-center justify-center mb-2.5 shadow-[0_2px_10px_rgba(13,148,136,0.08)]">
+                <Clock className="w-4.5 h-4.5 text-[#0D9488]" />
+              </div>
               <span className="font-display text-xl sm:text-2xl font-semibold text-black leading-tight">
                 Since June 2023
               </span>
@@ -48,7 +53,9 @@ export const HighlightBand: React.FC = () => {
 
             {/* Metric 2 */}
             <div className="flex flex-col items-center text-center">
-              <ShieldCheck className="w-5 h-5 text-[#0D9488] mb-2" />
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0D9488]/15 to-[#0D9488]/5 border border-[#0D9488]/20 flex items-center justify-center mb-2.5 shadow-[0_2px_10px_rgba(13,148,136,0.08)]">
+                <ShieldCheck className="w-4.5 h-4.5 text-[#0D9488]" />
+              </div>
               <span className="font-display text-2xl sm:text-3xl font-semibold text-black tabular-nums">24-Hour</span>
               <span className="font-caps text-xs sm:text-sm tracking-[1.5px] uppercase text-gray-900 mt-1 font-bold">
                 Quality Guarantee
@@ -60,7 +67,9 @@ export const HighlightBand: React.FC = () => {
 
             {/* Metric 3 */}
             <div className="flex flex-col items-center text-center">
-              <HeartHandshake className="w-5 h-5 text-[#0D9488] mb-2" />
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0D9488]/15 to-[#0D9488]/5 border border-[#0D9488]/20 flex items-center justify-center mb-2.5 shadow-[0_2px_10px_rgba(13,148,136,0.08)]">
+                <HeartHandshake className="w-4.5 h-4.5 text-[#0D9488]" />
+              </div>
               <span className="font-display text-xl sm:text-2xl font-semibold text-black leading-tight">
                 Trained by Alice Keiko
               </span>
@@ -74,7 +83,9 @@ export const HighlightBand: React.FC = () => {
 
             {/* Metric 4 */}
             <div className="flex flex-col items-center text-center">
-              <Sparkles className="w-5 h-5 text-[#0D9488] mb-2" />
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0D9488]/15 to-[#0D9488]/5 border border-[#0D9488]/20 flex items-center justify-center mb-2.5 shadow-[0_2px_10px_rgba(13,148,136,0.08)]">
+                <Sparkles className="w-4.5 h-4.5 text-[#0D9488]" />
+              </div>
               <span className="font-display text-2xl sm:text-3xl font-semibold text-black">Licensed</span>
               <span className="font-caps text-xs sm:text-sm tracking-[1.5px] uppercase text-gray-900 mt-1 font-bold">
                 Insured & Bonded

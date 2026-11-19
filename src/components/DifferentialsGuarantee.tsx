@@ -69,15 +69,24 @@ export const DifferentialsGuarantee: React.FC<DifferentialsGuaranteeProps> = ({
                 If any aspect of the service does not meet what was agreed upon during your consultation, simply notify us. <strong className="text-black font-semibold">We return to your property within 24 hours to perfect it at zero additional charge.</strong>
               </p>
 
-              <div className="pt-2 flex flex-wrap gap-5 text-sm font-caps tracking-[1px] uppercase text-gray-800 font-bold">
-                <span className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#0D9488]" /> No Excuses
+              <div className="pt-3 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs sm:text-[13px] font-caps tracking-[1.2px] uppercase text-gray-800 font-bold">
+                <span className="inline-flex items-center gap-2.5">
+                  <span className="w-7 h-7 rounded-full bg-[#0D9488]/12 border border-[#0D9488]/25 flex items-center justify-center shrink-0">
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#0D9488] stroke-[2.25]" />
+                  </span>
+                  <span className="leading-tight">No Excuses</span>
                 </span>
-                <span className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#0D9488]" /> Swift 24h Response
+                <span className="inline-flex items-center gap-2.5">
+                  <span className="w-7 h-7 rounded-full bg-[#0D9488]/12 border border-[#0D9488]/25 flex items-center justify-center shrink-0">
+                    <Clock className="w-3.5 h-3.5 text-[#0D9488] stroke-[2.25]" />
+                  </span>
+                  <span className="leading-tight">Swift 24h Response</span>
                 </span>
-                <span className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#0D9488]" /> 100% Free of Charge
+                <span className="inline-flex items-center gap-2.5">
+                  <span className="w-7 h-7 rounded-full bg-[#0D9488]/12 border border-[#0D9488]/25 flex items-center justify-center shrink-0">
+                    <HeartHandshake className="w-3.5 h-3.5 text-[#0D9488] stroke-[2.25]" />
+                  </span>
+                  <span className="leading-tight">100% Free of Charge</span>
                 </span>
               </div>
             </div>
@@ -95,7 +104,7 @@ export const DifferentialsGuarantee: React.FC<DifferentialsGuaranteeProps> = ({
               <button
                 type="button"
                 onClick={handleContactClick}
-                className="w-full inline-flex items-center justify-center gap-2 py-3.5 bg-[#0D9488] hover:bg-[#0F766E] text-white font-caps text-xs sm:text-[13px] tracking-[1.5px] uppercase font-bold transition-colors cursor-pointer"
+                className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-[8px] bg-[#0D9488] hover:bg-[#0F766E] text-white font-caps text-xs sm:text-[13px] tracking-[1.5px] uppercase font-bold transition-colors cursor-pointer"
               >
                 <span>CONTACT TODAY</span>
                 <ArrowRight className="w-4 h-4" />
