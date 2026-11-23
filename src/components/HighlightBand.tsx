@@ -47,7 +47,7 @@ export const HighlightBand: React.FC = () => {
                 Word-of-Mouth Trust
               </span>
               <span className="text-sm text-gray-600 font-sans mt-0.5 leading-snug">
-                Client-referred islandwide
+                Recommended by our clients
               </span>
             </div>
 

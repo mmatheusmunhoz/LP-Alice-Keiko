@@ -73,7 +73,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onScrollToContact })
                 <span className="w-8 h-8 rounded-full bg-[#0D9488]/15 border border-[#2DD4BF]/30 flex items-center justify-center shrink-0">
                   <MapPin className="w-4 h-4 text-[#5EEAD4] stroke-[2.2]" />
                 </span>
-                <span>North Shore HQ · Islandwide Service</span>
+                <span>North Shore, Honolulu & Kailua</span>
               </div>
               <div className="flex items-center gap-3 text-[15px] text-gray-200 leading-snug">
                 <span className="w-8 h-8 rounded-full bg-[#0D9488]/15 border border-[#2DD4BF]/30 flex items-center justify-center shrink-0">

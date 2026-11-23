@@ -80,7 +80,7 @@ export const FAQSection: React.FC = () => {
 
                   {isOpen && (
                     <div className="p-6 pt-2 font-sans text-[16px] text-gray-700 leading-relaxed border-t border-gray-100 bg-white shadow-inset">
-                      <p>{faq.answer}</p>
+                      <p className="whitespace-pre-line">{faq.answer}</p>
                     </div>
                   )}
                 </div>

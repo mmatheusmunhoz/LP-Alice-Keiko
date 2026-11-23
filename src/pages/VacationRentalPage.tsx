@@ -33,7 +33,7 @@ export const VacationRentalPage: React.FC<PageProps> = ({ onBackToHome, onOpenCo
           </h1>
 
           <p className="font-sans text-[17px] sm:text-[19px] text-gray-300 max-w-3xl leading-relaxed">
-            Turnkey cleaning, 5-star linen presentation, and departure inspection reports engineered for North Shore, Waikiki, and Kailua vacation properties. We safeguard your Superhost rating on every guest stay.
+            Turnkey cleaning, 5-star linen presentation, and departure inspection reports engineered for North Shore (Mokulēʻia to Lāʻie), Honolulu, and Kailua vacation properties. We safeguard your Superhost rating on every guest stay.
           </p>
 
           <div className="mt-8">

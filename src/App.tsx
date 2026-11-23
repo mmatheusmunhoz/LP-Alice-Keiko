@@ -56,10 +56,10 @@ const PAGE_SEO_CONFIG: Record<'home' | 'residential' | 'vacation' | 'specialized
   vacation: {
     title: 'Oahu Vacation Rental & Airbnb Turnover Cleaning | Alice Keiko',
     description:
-      'Same-day 5-star turnover cleaning, hotel-standard linen laundering, and damage reports for luxury North Shore and Waikiki Airbnb & VRBO properties.',
+      'Same-day 5-star turnover cleaning, hotel-standard linen laundering, and damage reports for luxury North Shore, Honolulu, and Kailua Airbnb & VRBO properties.',
     ogTitle: 'Oahu Vacation Rental & Airbnb Turnover Cleaning | Alice Keiko',
     ogDescription:
-      'Same-day 5-star turnover cleaning, hotel-standard linen laundering, and damage reports for luxury North Shore and Waikiki Airbnb & VRBO properties.',
+      'Same-day 5-star turnover cleaning, hotel-standard linen laundering, and damage reports for luxury North Shore, Honolulu, and Kailua Airbnb & VRBO properties.',
     canonicalPath: '#vacation',
     serviceCategory: 'Vacation Rental Turnover Services',
   },
@@ -209,13 +209,9 @@ export default function App() {
       url: canonicalUrl,
       priceRange: '$$$',
       areaServed: [
-        { '@type': 'AdministrativeArea', name: 'Oahu' },
-        { '@type': 'Place', name: 'North Shore, Hawaii' },
-        { '@type': 'Place', name: 'The Ritz-Carlton O‘ahu, Turtle Bay, 57-091 Kamehameha Highway, Kahuku, HI 96731, USA' },
+        { '@type': 'Place', name: 'North Shore (from Mokulēʻia to Lāʻie), Oʻahu, Hawaii' },
         { '@type': 'Place', name: 'Honolulu, Hawaii' },
-        { '@type': 'Place', name: 'Kahala, Hawaii' },
-        { '@type': 'Place', name: 'Lanikai, Hawaii' },
-        { '@type': 'Place', name: 'Waikiki, Hawaii' },
+        { '@type': 'Place', name: 'Kailua, Hawaii' },
       ],
       address: {
         '@type': 'PostalAddress',
@@ -353,7 +349,7 @@ export default function App() {
             {/* 5. Priority Block 2: Differentials & 24-Hour Quality Guarantee */}
             <DifferentialsGuarantee onScrollToContact={() => handleScrollToContact()} />
 
-            {/* 6. Priority Block 3: About Alice Keiko & the 5-Person Specialist Team */}
+            {/* 6. Priority Block 3: About Alice Keiko & Her Dedicated Team */}
             <AboutSection onScrollToContact={() => handleScrollToContact()} />
 
             {/* 7. Priority Block 5: Interactive Before & After Showcase */}

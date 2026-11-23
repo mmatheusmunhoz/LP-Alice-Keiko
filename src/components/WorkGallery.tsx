@@ -172,7 +172,7 @@ export const WorkGallery: React.FC<WorkGalleryProps> = ({ onScrollToContact }) =
           </h4>
 
           <p className="font-sans text-[16px] sm:text-[17px] text-gray-600 leading-[1.75] mb-5">
-            A candid look inside the private Oʻahu estates, oceanfront residences, and vacation retreats cared for daily by Alice Keiko and her 5-person specialist team.
+            A candid look inside the private Oʻahu estates, oceanfront residences, and vacation retreats cared for daily by Alice Keiko and her dedicated team.
           </p>
 
           <p className="font-sans text-[16px] sm:text-[17px] text-gray-600 leading-[1.75] mb-8">

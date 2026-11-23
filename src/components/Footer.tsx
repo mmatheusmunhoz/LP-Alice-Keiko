@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ShieldCheck, MessageSquare, Phone, Mail, Clock, MapPin, X } from 'lucide-react';
 import { COMPANY_INFO } from '../data';
+import { CareersModal } from './CareersModal';
 
 interface FooterProps {
   onScrollToContact?: () => void;
@@ -8,6 +9,42 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ onScrollToContact }) => {
   const [modalPolicy, setModalPolicy] = useState<'privacy' | 'terms' | null>(null);
+  const [isCareersOpen, setIsCareersOpen] = useState<boolean>(false);
+  const careersLinkRef = useRef<HTMLAnchorElement>(null);
+
+  const openCareersModal = useCallback(() => {
+    setIsCareersOpen(true);
+    try {
+      if (window.location.hash !== '#careers') {
+        window.history.replaceState(null, '', '#careers');
+      }
+    } catch {
+      // Ignore history errors in restricted preview origins
+    }
+  }, []);
+
+  const closeCareersModal = useCallback(() => {
+    setIsCareersOpen(false);
+    try {
+      if (window.location.hash.toLowerCase() === '#careers') {
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+    } catch {
+      // Ignore history errors in restricted preview origins
+    }
+  }, []);
+
+  useEffect(() => {
+    const syncCareersHash = () => {
+      if (window.location.hash.toLowerCase() === '#careers') {
+        setIsCareersOpen(true);
+      }
+    };
+
+    syncCareersHash();
+    window.addEventListener('hashchange', syncCareersHash);
+    return () => window.removeEventListener('hashchange', syncCareersHash);
+  }, []);
 
   const handleContactClick = () => {
     if (onScrollToContact) {
@@ -77,7 +114,7 @@ export const Footer: React.FC<FooterProps> = ({ onScrollToContact }) => {
               Island Service Regions
             </h4>
             <p className="text-xs text-gray-400 font-sans mb-3">
-              Headquartered on the North Shore, proudly serving the entire island of Oʻahu:
+              Headquartered on the North Shore, proudly serving:
             </p>
             <ul className="space-y-1.5 font-sans text-[14px] text-gray-300">
               <li>• North Shore (from Mokulēʻia to Lāʻie)</li>
@@ -144,7 +181,19 @@ export const Footer: React.FC<FooterProps> = ({ onScrollToContact }) => {
             © {new Date().getFullYear()} Alice Keiko Organizing and Cleaning Services, LLC. All rights reserved.
           </div>
 
-          <div className="flex items-center gap-6 mt-4 sm:mt-0">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mt-4 sm:mt-0">
+            <a
+              ref={careersLinkRef}
+              href="#careers"
+              onClick={(e) => {
+                e.preventDefault();
+                openCareersModal();
+              }}
+              className="text-white/[0.78] hover:text-aqua-light transition-colors cursor-pointer"
+            >
+              Careers — Join our team
+            </a>
+            <span>•</span>
             <button
               onClick={() => setModalPolicy('privacy')}
               className="hover:text-white transition-colors cursor-pointer"
@@ -161,6 +210,13 @@ export const Footer: React.FC<FooterProps> = ({ onScrollToContact }) => {
           </div>
         </div>
       </div>
+
+      {/* Careers Lazy-Loaded Jotform Modal */}
+      <CareersModal
+        isOpen={isCareersOpen}
+        onClose={closeCareersModal}
+        returnFocusRef={careersLinkRef}
+      />
 
       {/* Legal & Policy Advisory Modal */}
       {modalPolicy && (

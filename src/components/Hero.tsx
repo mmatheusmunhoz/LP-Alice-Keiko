@@ -21,7 +21,7 @@ export const Hero: React.FC<HeroProps> = ({ onScrollToContact }) => {
         {/* Geographic Badge */}
         <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 bg-black/60 border border-white/20 backdrop-blur-xs text-[10px] sm:text-xs font-caps tracking-[2px] sm:tracking-[2.5px] uppercase mb-3 sm:mb-4 text-white">
           <MapPin className="w-3.5 h-3.5 text-aqua-light shrink-0" />
-          <span>North Shore Oʻahu · Serving All Oʻahu & Neighbor Islands</span>
+          <span>North Shore (Mokulēʻia to Lāʻie) · Honolulu · Kailua</span>
         </div>
 
         {/* Company Signature Eyebrow */}

@@ -27,7 +27,7 @@ export const JapanesePhilosophySection: React.FC = () => {
       translation: 'Shine & Mindful Care',
       image: 'https://res.cloudinary.com/k6gktjkm/image/upload/v1794870659/0101.jpg',
       isPhoto: true,
-      description: 'Cleaning every space with care—polishing glass, descaling fixtures, and noticing when any area needs extra attention.',
+      description: 'We clean each space with care and respect, paying attention to the details as we go. That helps us notice what needs extra care and leave your home feeling refreshed.',
     },
     {
       step: '04',

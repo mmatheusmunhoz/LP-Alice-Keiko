@@ -12,9 +12,9 @@ export const COMPANY_INFO = {
   whatsappRaw: '14156606374',
   email: 'Keikomcd@gmail.com',
   businessHours: 'Monday – Sunday, 7:30 AM – 5:30 PM HST',
-  experience: '3 years and 4 months serving premier properties',
-  teamSize: '5 dedicated specialists personally trained & supervised by Alice Keiko',
-  location: 'North Shore of Oʻahu, Hawaiʻi (Serving all of Oʻahu & Neighbor Islands)',
+  experience: 'Serving premier properties since June 2023',
+  teamSize: 'Dedicated team personally trained & supervised by Alice Keiko',
+  location: 'Serving North Shore (from Mokulēʻia to Lāʻie), Honolulu & Kailua',
   credentials: [
     'Fully Registered LLC & Licensed in Hawaiʻi',
     'Comprehensive General Liability Insurance & Bonded',
@@ -294,7 +294,7 @@ export const TESTIMONIALS_LIST: TestimonialItem[] = [
       'Alice Keiko recommended we start with a deep clean before switching to regular service, and what a difference. The sliding door tracks, window sills, and shower glass looked brand new. You can tell she personally trains her staff because the attention to detail is consistent across all rooms. She truly keeps her word.',
     author: 'Elena T.',
     role: 'Architectural Homeowner',
-    location: 'Kahala & Diamond Head',
+    location: 'Honolulu, Oʻahu',
     serviceUsed: 'Deep Cleaning + Monthly Care',
   },
 ];
@@ -304,7 +304,7 @@ export const FAQ_LIST: FAQItem[] = [
     category: 'Trust & Team',
     question: 'Who will be inside my home, and is your team trustworthy?',
     answer:
-      'Our team consists of 5 dedicated specialists plus owner Alice Keiko. Every team member undergoes thorough criminal background checks, is personally trained by Alice Keiko in our proprietary methods, wears neat company uniforms, and works under strict confidentiality. We treat your property with the same reverence and care we give our own homes.',
+      'Our dedicated team is personally trained and supervised by owner Alice Keiko. Every team member undergoes thorough criminal background checks, is trained in our proprietary methods, wears neat company uniforms, and works under strict confidentiality. We treat your property with the same reverence and care we give our own homes.',
   },
   {
     category: 'Process & Pricing',
@@ -332,9 +332,9 @@ export const FAQ_LIST: FAQItem[] = [
   },
   {
     category: 'Service Area',
-    question: 'Which areas of Oʻahu and other Hawaiian islands do you service?',
+    question: 'Which areas of Oʻahu do you service?',
     answer:
-      'We are headquartered on the North Shore of Oʻahu and proudly service all regions of the island—including The Ritz-Carlton O‘ahu, Turtle Bay (57-091 Kamehameha Highway, Kahuku, HI 96731, USA), Honolulu, Kahala, Lanikai, Kailua, Hawaii Kai, and Waikiki. We also service properties on neighbor islands upon advance scheduling and assessment of project scale.',
+      'Headquartered on the North Shore, proudly serving:\n• North Shore (from Mokulēʻia to Lāʻie)\n• Honolulu\n• Kailua',
   },
   {
     category: 'Payments',
@@ -372,7 +372,7 @@ export const DIFFERENTIALS_DATA = [
   {
     title: 'Built on Client Trust & Referrals',
     description:
-      'Operating for over 3 years on Oʻahu, our growth has been driven primarily by satisfied homeowner referrals—the ultimate reflection of consistency and integrity.',
+      'Serving Oʻahu since June 2023, our growth has been driven primarily by satisfied homeowner referrals—the ultimate reflection of consistency and integrity.',
     icon: 'HeartHandshake',
   },
   {
