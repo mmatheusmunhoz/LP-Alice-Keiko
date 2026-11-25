@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { HighlightBand } from './components/HighlightBand';
@@ -21,73 +21,43 @@ import { ResidentialPage } from './pages/ResidentialPage';
 import { VacationRentalPage } from './pages/VacationRentalPage';
 import { SpecializedPage } from './pages/SpecializedPage';
 import { useIntersectionObserver } from './hooks/useIntersectionObserver';
+import {
+  PageKey,
+  PAGE_SEO_CONFIG,
+  ROUTE_PATHS,
+  OG_IMAGE_URL,
+  resolvePageFromLocation,
+  buildStructuredData,
+} from './seo';
 
-// Distinct SEO Metadata configuration for Google search visibility
-interface PageSEO {
-  title: string;
-  description: string;
-  ogTitle: string;
-  ogDescription: string;
-  canonicalPath: string;
-  serviceCategory: string;
+interface AppProps {
+  initialPath?: string;
 }
 
-const PAGE_SEO_CONFIG: Record<'home' | 'residential' | 'vacation' | 'specialized', PageSEO> = {
-  home: {
-    title: 'Alice Keiko Organizing & Cleaning Services LLC | Oahu Luxury & Vacation Care',
-    description:
-      'Premier high-end residential, professional organizing, and turnkey Airbnb/vacation rental cleaning across Oahu. Licensed, insured, owner-trained team with a 24-hour satisfaction guarantee.',
-    ogTitle: 'Alice Keiko Organizing & Cleaning Services LLC | Oahu Luxury & Vacation Care',
-    ogDescription:
-      'Premier high-end residential, professional organizing, and turnkey Airbnb/vacation rental cleaning across Oahu. Licensed, insured, owner-trained team with a 24-hour satisfaction guarantee.',
-    canonicalPath: '',
-    serviceCategory: 'Residential & Vacation Rental Cleaning',
-  },
-  residential: {
-    title: 'Residential Deep & Maintenance Cleaning Oahu | Alice Keiko LLC',
-    description:
-      'White-glove estate deep cleaning, recurring weekly maintenance, and move-in/out detailing across Oahu. Meticulous Japanese 5S care with a 24h guarantee.',
-    ogTitle: 'Residential Deep & Maintenance Cleaning Oahu | Alice Keiko LLC',
-    ogDescription:
-      'White-glove estate deep cleaning, recurring weekly maintenance, and move-in/out detailing across Oahu. Meticulous Japanese 5S care with a 24h guarantee.',
-    canonicalPath: '#residential',
-    serviceCategory: 'Residential Cleaning Services',
-  },
-  vacation: {
-    title: 'Oahu Vacation Rental & Airbnb Turnover Cleaning | Alice Keiko',
-    description:
-      'Same-day 5-star turnover cleaning, hotel-standard linen laundering, and damage reports for luxury North Shore, Honolulu, and Kailua Airbnb & VRBO properties.',
-    ogTitle: 'Oahu Vacation Rental & Airbnb Turnover Cleaning | Alice Keiko',
-    ogDescription:
-      'Same-day 5-star turnover cleaning, hotel-standard linen laundering, and damage reports for luxury North Shore, Honolulu, and Kailua Airbnb & VRBO properties.',
-    canonicalPath: '#vacation',
-    serviceCategory: 'Vacation Rental Turnover Services',
-  },
-  specialized: {
-    title: 'Home Organizing & Post-Construction Cleaning Oahu | Alice Keiko',
-    description:
-      'Personalized closet & pantry organization, heavy renovation dust extraction, and appliance detailing on Oahu. Inspiring serenity and functional order.',
-    ogTitle: 'Home Organizing & Post-Construction Cleaning Oahu | Alice Keiko',
-    ogDescription:
-      'Personalized closet & pantry organization, heavy renovation dust extraction, and appliance detailing on Oahu. Inspiring serenity and functional order.',
-    canonicalPath: '#specialized',
-    serviceCategory: 'Specialized Home Organizing & Post-Construction Cleaning',
-  },
-};
-
-export default function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'residential' | 'vacation' | 'specialized'>('home');
+export default function App({ initialPath }: AppProps = {}) {
+  const [currentPage, setCurrentPage] = useState<PageKey>(() => {
+    if (initialPath) {
+      return resolvePageFromLocation(initialPath);
+    }
+    if (typeof window !== 'undefined') {
+      return resolvePageFromLocation(window.location.pathname, window.location.hash);
+    }
+    return 'home';
+  });
   const [selectedServiceForQuote, setSelectedServiceForQuote] = useState<string>('Deep Cleaning');
 
-  // Dynamically update meta titles, descriptions, and Schema.org structured data on page switch
+  // Keep document metadata, canonical, OpenGraph, and JSON-LD in sync during client-side navigation
   useEffect(() => {
     const seo = PAGE_SEO_CONFIG[currentPage] || PAGE_SEO_CONFIG.home;
 
-    // 1. Update Document Title
     document.title = seo.title;
 
-    // 2. Helper to update or inject meta tags
-    const setMetaTag = (selector: string, attribute: string, value: string, createTag: () => HTMLElement) => {
+    const setMetaTag = (
+      selector: string,
+      attribute: string,
+      value: string,
+      createTag: () => HTMLElement
+    ) => {
       let tag = document.querySelector(selector);
       if (!tag) {
         tag = createTag();
@@ -96,16 +66,12 @@ export default function App() {
       tag.setAttribute(attribute, value);
     };
 
-    // Standard Meta Description
     setMetaTag('meta[name="description"]', 'content', seo.description, () => {
       const el = document.createElement('meta');
       el.setAttribute('name', 'description');
       return el;
     });
 
-    const ogImageUrl = 'https://alicekeikocleaning.com/assets/photos/IMG_6591.jpg';
-
-    // OpenGraph Type, Site Name, Locale, Title, Description & Image
     setMetaTag('meta[property="og:type"]', 'content', 'website', () => {
       const el = document.createElement('meta');
       el.setAttribute('property', 'og:type');
@@ -136,13 +102,12 @@ export default function App() {
       return el;
     });
 
-    setMetaTag('meta[property="og:image"]', 'content', ogImageUrl, () => {
+    setMetaTag('meta[property="og:image"]', 'content', OG_IMAGE_URL, () => {
       const el = document.createElement('meta');
       el.setAttribute('property', 'og:image');
       return el;
     });
 
-    // Twitter Card Metadata
     setMetaTag('meta[name="twitter:card"]', 'content', 'summary_large_image', () => {
       const el = document.createElement('meta');
       el.setAttribute('name', 'twitter:card');
@@ -161,19 +126,11 @@ export default function App() {
       return el;
     });
 
-    setMetaTag('meta[name="twitter:image"]', 'content', ogImageUrl, () => {
+    setMetaTag('meta[name="twitter:image"]', 'content', OG_IMAGE_URL, () => {
       const el = document.createElement('meta');
       el.setAttribute('name', 'twitter:image');
       return el;
     });
-
-    // Canonical Link URL (preserves official domain cleanly without hash pollution)
-    const productionOrigin = 'https://alicekeikocleaning.com';
-    const isCustomDomain =
-      typeof window !== 'undefined' && window.location.hostname.includes('alicekeikocleaning.com');
-    const canonicalOrigin = isCustomDomain ? window.location.origin : productionOrigin;
-    const canonicalPathname = isCustomDomain ? window.location.pathname || '/' : '/';
-    const canonicalUrl = `${canonicalOrigin}${canonicalPathname}`;
 
     let canonicalTag = document.querySelector('link[rel="canonical"]');
     if (!canonicalTag) {
@@ -181,15 +138,14 @@ export default function App() {
       canonicalTag.setAttribute('rel', 'canonical');
       document.head.appendChild(canonicalTag);
     }
-    canonicalTag.setAttribute('href', canonicalUrl);
+    canonicalTag.setAttribute('href', seo.canonicalUrl);
 
-    setMetaTag('meta[property="og:url"]', 'content', canonicalUrl, () => {
+    setMetaTag('meta[property="og:url"]', 'content', seo.canonicalUrl, () => {
       const el = document.createElement('meta');
       el.setAttribute('property', 'og:url');
       return el;
     });
 
-    // 3. Schema.org JSON-LD Structured Data for Google Rich Snippets
     let schemaScript = document.getElementById('schema-structured-data');
     if (!schemaScript) {
       schemaScript = document.createElement('script');
@@ -197,113 +153,102 @@ export default function App() {
       schemaScript.setAttribute('id', 'schema-structured-data');
       document.head.appendChild(schemaScript);
     }
-
-    const structuredData = {
-      '@context': 'https://schema.org',
-      '@type': 'CleaningService',
-      name: 'Alice Keiko Organizing and Cleaning Services, LLC',
-      alternateName: 'Alice Keiko Cleaning Oahu',
-      image: 'https://alicekeikocleaning.com/assets/logo.webp',
-      telephone: '+1-808-218-2515',
-      email: 'Keikomcd@gmail.com',
-      url: canonicalUrl,
-      priceRange: '$$$',
-      areaServed: [
-        { '@type': 'Place', name: 'North Shore (from Mokulēʻia to Lāʻie), Oʻahu, Hawaii' },
-        { '@type': 'Place', name: 'Honolulu, Hawaii' },
-        { '@type': 'Place', name: 'Kailua, Hawaii' },
-      ],
-      address: {
-        '@type': 'PostalAddress',
-        addressRegion: 'HI',
-        addressCountry: 'US',
-      },
-      openingHoursSpecification: {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: [
-          'Monday',
-          'Tuesday',
-          'Wednesday',
-          'Thursday',
-          'Friday',
-          'Saturday',
-          'Sunday',
-        ],
-        opens: '07:30',
-        closes: '17:30',
-      },
-      serviceType: seo.serviceCategory,
-      description: seo.description,
-    };
-
-    schemaScript.textContent = JSON.stringify(structuredData);
+    schemaScript.textContent = JSON.stringify(buildStructuredData(currentPage));
   }, [currentPage]);
 
-  // Sync with browser URL hash
+  // Sync with real URL paths (History API popstate) and legacy hashes
   useEffect(() => {
-    const handleHash = () => {
-      const hash = window.location.hash.replace('#', '');
-      if (hash === 'residential' || hash === 'vacation' || hash === 'specialized') {
-        setCurrentPage(hash as any);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (
-        hash === '' ||
-        hash === 'home' ||
-        hash === 'services' ||
-        hash === 'checklists' ||
-        hash === 'philosophy' ||
-        hash === 'guarantee' ||
-        hash === 'about' ||
-        hash === 'showcase' ||
-        hash === 'testimonials' ||
-        hash === 'faq' ||
-        hash === 'contact'
+    const syncFromLocation = () => {
+      const resolved = resolvePageFromLocation(window.location.pathname, window.location.hash);
+      setCurrentPage(resolved);
+
+      // Normalize legacy hash routes (#residential, #vacation, #specialized) to real URLs
+      const cleanHash = window.location.hash.replace(/^#/, '').toLowerCase();
+      if (
+        resolved !== 'home' &&
+        (cleanHash === 'residential' || cleanHash === 'vacation' || cleanHash === 'vacation-rental' || cleanHash === 'specialized')
       ) {
-        setCurrentPage('home');
+        try {
+          window.history.replaceState({}, '', ROUTE_PATHS[resolved]);
+        } catch {
+          // Ignore in restricted preview origins
+        }
       }
     };
 
-    handleHash();
-    window.addEventListener('hashchange', handleHash);
-    return () => window.removeEventListener('hashchange', handleHash);
+    syncFromLocation();
+    window.addEventListener('popstate', syncFromLocation);
+    window.addEventListener('hashchange', syncFromLocation);
+    return () => {
+      window.removeEventListener('popstate', syncFromLocation);
+      window.removeEventListener('hashchange', syncFromLocation);
+    };
   }, []);
 
-  const navigateToPage = (page: 'home' | 'residential' | 'vacation' | 'specialized') => {
+  const navigateToPage = useCallback((page: PageKey) => {
+    const targetPath = ROUTE_PATHS[page];
     setCurrentPage(page);
-    window.location.hash = page === 'home' ? '' : page;
+    try {
+      if (window.location.pathname !== targetPath || window.location.hash) {
+        window.history.pushState({}, '', targetPath);
+      }
+    } catch {
+      // Ignore history errors in restricted origins
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  }, []);
+
+  const navigateToHomeSection = useCallback(
+    (sectionId?: string) => {
+      if (!sectionId) {
+        navigateToPage('home');
+        return;
+      }
+
+      if (currentPage !== 'home') {
+        setCurrentPage('home');
+        try {
+          window.history.pushState({}, '', `/#${sectionId}`);
+        } catch {
+          // Ignore
+        }
+        window.setTimeout(() => {
+          document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      } else {
+        try {
+          window.history.replaceState({}, '', `/#${sectionId}`);
+        } catch {
+          // Ignore
+        }
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+      }
+    },
+    [currentPage, navigateToPage]
+  );
 
   // Trigger fade-in-up animation on scroll for each section safely
   useIntersectionObserver('.fade-in-up-observe');
 
-  const handleScrollToContact = (serviceTitle?: string) => {
-    if (serviceTitle) {
-      setSelectedServiceForQuote(serviceTitle);
-    }
-
-    if (currentPage !== 'home') {
-      navigateToPage('home');
-      setTimeout(() => {
-        const contactElem = document.getElementById('contact');
-        if (contactElem) {
-          contactElem.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    } else {
-      const contactElem = document.getElementById('contact');
-      if (contactElem) {
-        contactElem.scrollIntoView({ behavior: 'smooth' });
+  const handleScrollToContact = useCallback(
+    (serviceTitle?: string) => {
+      if (serviceTitle) {
+        setSelectedServiceForQuote(serviceTitle);
       }
-    }
-  };
+      navigateToHomeSection('contact');
+    },
+    [navigateToHomeSection]
+  );
 
   return (
     <div className="min-h-screen bg-white text-[#71717A] font-sans selection:bg-[#0D9488] selection:text-white flex flex-col">
       {/* Sticky Top Navigation */}
-      <Navbar onOpenQuoteModal={handleScrollToContact} />
+      <Navbar
+        onOpenQuoteModal={handleScrollToContact}
+        onNavigateHomeSection={navigateToHomeSection}
+      />
 
-      {/* Main View Area: Conditionally load respective dedicated pages */}
+      {/* Main View Area: Real URL routes (/, /residential, /vacation-rental, /specialized) */}
       <main className="flex-1">
         {currentPage === 'residential' && (
           <ResidentialPage
@@ -368,7 +313,10 @@ export default function App() {
       </main>
 
       {/* Official Footer with Licensed & Insured notice & Privacy policy modal */}
-      <Footer onScrollToContact={() => handleScrollToContact()} />
+      <Footer
+        onScrollToContact={() => handleScrollToContact()}
+        onNavigateHomeSection={navigateToHomeSection}
+      />
 
       {/* Back to top helper */}
       <BackToTop />

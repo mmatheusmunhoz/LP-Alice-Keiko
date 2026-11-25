@@ -340,7 +340,7 @@ export const FAQ_LIST: FAQItem[] = [
     category: 'Payments',
     question: 'What payment methods do you accept?',
     answer:
-      'We accept electronic bank transfers (ACH/Zelle), major credit cards, and company checks for ongoing residential and commercial accounts. Invoices are sent directly upon service completion.',
+      'We accept electronic bank transfers (ACH/Zelle) and company checks for ongoing residential and commercial accounts. Invoices are sent directly upon service completion.',
   },
 ];
 

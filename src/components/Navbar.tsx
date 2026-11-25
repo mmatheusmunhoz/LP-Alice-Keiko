@@ -4,9 +4,13 @@ import { COMPANY_INFO } from '../data';
 
 interface NavbarProps {
   onOpenQuoteModal: (serviceName?: string) => void;
+  onNavigateHomeSection?: (sectionId?: string) => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenQuoteModal }) => {
+export const Navbar: React.FC<NavbarProps> = ({
+  onOpenQuoteModal,
+  onNavigateHomeSection,
+}) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -21,15 +25,25 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuoteModal }) => {
   }, []);
 
   const navLinks = [
-    { label: 'Services', href: '#services' },
-    { label: '5S Philosophy', href: '#philosophy' },
-    { label: 'Guarantee', href: '#guarantee' },
-    { label: 'About Alice Keiko', href: '#about' },
-    { label: 'Before & After', href: '#showcase' },
-    { label: 'Reviews', href: '#testimonials' },
-    { label: 'FAQ', href: '#faq' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Services', href: '/#services', sectionId: 'services' },
+    { label: '5S Philosophy', href: '/#philosophy', sectionId: 'philosophy' },
+    { label: 'Guarantee', href: '/#guarantee', sectionId: 'guarantee' },
+    { label: 'About Alice Keiko', href: '/#about', sectionId: 'about' },
+    { label: 'Before & After', href: '/#showcase', sectionId: 'showcase' },
+    { label: 'Reviews', href: '/#testimonials', sectionId: 'testimonials' },
+    { label: 'FAQ', href: '/#faq', sectionId: 'faq' },
+    { label: 'Contact', href: '/#contact', sectionId: 'contact' },
   ];
+
+  const handleSectionLinkClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    sectionId?: string
+  ) => {
+    if (!onNavigateHomeSection) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    e.preventDefault();
+    onNavigateHomeSection(sectionId);
+  };
 
   return (
     <>
@@ -70,7 +84,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuoteModal }) => {
       >
         <div className="max-w-[1180px] w-[94%] sm:w-[92%] mx-auto flex items-center justify-between gap-3 sm:gap-4">
           {/* Brand Logo Lockup: Trimmed Emblem + Company Title / Divider / Hawaiian Islands */}
-          <a href="#" className="flex items-center gap-1.5 sm:gap-2.5 group py-0.5 min-w-0 shrink">
+          <a
+            href="/"
+            onClick={(e) => handleSectionLinkClick(e)}
+            className="flex items-center gap-1.5 sm:gap-2.5 group py-0.5 min-w-0 shrink"
+          >
             <img
               src={
                 isScrolled
@@ -107,11 +125,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuoteModal }) => {
           </a>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center space-x-0.5 xl:space-x-1 shrink-0">
+          <nav aria-label="Main navigation" className="hidden lg:flex items-center space-x-0.5 xl:space-x-1 shrink-0">
             {navLinks.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
+                onClick={(e) => handleSectionLinkClick(e, item.sectionId)}
                 className={`font-display text-[12px] xl:text-[14px] px-1 xl:px-2.5 py-1.5 transition-colors font-medium whitespace-nowrap ${
                   isScrolled
                     ? 'text-gray-700 hover:text-[#0D9488]'
@@ -187,18 +206,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuoteModal }) => {
                 </button>
               </div>
 
-              <div className="py-5 flex flex-col space-y-3">
+              <nav aria-label="Mobile navigation" className="py-5 flex flex-col space-y-3">
                 {navLinks.map((item) => (
                   <a
                     key={item.label}
                     href={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={(e) => {
+                      setMobileMenuOpen(false);
+                      handleSectionLinkClick(e, item.sectionId);
+                    }}
                     className="font-display text-lg text-gray-800 hover:text-[#0D9488] font-medium py-1 transition-colors"
                   >
                     {item.label}
                   </a>
                 ))}
-              </div>
+              </nav>
             </div>
 
             <div className="space-y-3 pt-4 border-t border-gray-200">

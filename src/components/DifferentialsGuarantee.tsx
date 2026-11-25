@@ -127,9 +127,9 @@ export const DifferentialsGuarantee: React.FC<DifferentialsGuaranteeProps> = ({
                     <IconComponent className="w-5 h-5 stroke-[2]" />
                   </div>
 
-                <h4 className="font-display text-[20px] sm:text-[22px] text-black font-semibold mb-3 leading-snug">
+                <h3 className="font-display text-[20px] sm:text-[22px] text-black font-semibold mb-3 leading-snug">
                   {diff.title}
-                </h4>
+                </h3>
 
                 <p className="font-sans text-[15px] sm:text-[16px] text-gray-700 leading-relaxed">
                   {diff.description}

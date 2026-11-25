@@ -31,12 +31,12 @@ export const Hero: React.FC<HeroProps> = ({ onScrollToContact }) => {
 
         {/* Core Motto Headline */}
         <h1 className="font-display text-[28px] sm:text-[38px] md:text-[46px] lg:text-[50px] font-semibold leading-[1.16] sm:leading-[1.18] tracking-[-0.02em] text-white max-w-[900px] mb-3.5 sm:mb-4 text-balance">
-          A trusted company that delivers what it promises and delivers quality.
+          Discreet, detail-oriented cleaning you can count on
         </h1>
 
         {/* Concise Supporting Line (non-redundant with HighlightBand below) */}
-        <p className="font-sans text-[15px] sm:text-[17px] md:text-[18px] leading-[1.55] text-white/90 max-w-[680px] font-normal mb-6 sm:mb-8">
-          White-glove residential cleaning, turnkey Airbnb/VRBO turnovers, and tailored home organizing across Oʻahu.
+        <p className="font-sans text-[15px] sm:text-[17px] md:text-[18px] leading-[1.55] text-white/90 max-w-[700px] font-normal mb-6 sm:mb-8">
+          Our trained, fully insured team provides professional cleaning and organizing for private homes and vacation rentals across Oʻahu.
         </p>
 
         {/* Single Unified Primary CTA */}

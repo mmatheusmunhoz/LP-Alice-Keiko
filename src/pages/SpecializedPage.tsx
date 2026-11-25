@@ -13,16 +13,22 @@ export const SpecializedPage: React.FC<PageProps> = ({ onBackToHome, onOpenConta
   return (
     <div className="min-h-screen bg-white">
       {/* Top Banner */}
-      <div className="bg-[#0A0A0A] text-white pt-24 pb-14 border-b border-white/10">
+      <section className="bg-[#0A0A0A] text-white pt-24 pb-14 border-b border-white/10">
         <div className="max-w-[1160px] w-[92%] mx-auto">
-          <button
-            onClick={onBackToHome}
-            type="button"
-            className="inline-flex items-center gap-2 text-xs font-caps tracking-[2px] uppercase text-aqua-light hover:text-white transition-colors mb-6 cursor-pointer"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>← Back to All Services & Main Page</span>
-          </button>
+          <nav aria-label="Breadcrumb">
+            <a
+              href="/"
+              onClick={(e) => {
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+                e.preventDefault();
+                onBackToHome();
+              }}
+              className="inline-flex items-center gap-2 text-xs font-caps tracking-[2px] uppercase text-aqua-light hover:text-white transition-colors mb-6 cursor-pointer"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>← Back to All Services & Main Page</span>
+            </a>
+          </nav>
 
           <div className="inline-block px-3 py-1 bg-[#0D9488]/20 border border-[#0D9488]/40 text-aqua-light text-xs font-caps tracking-[2.5px] uppercase font-bold mb-3">
             SPECIALIZED CRAFTSMANSHIP DIVISION
@@ -47,10 +53,10 @@ export const SpecializedPage: React.FC<PageProps> = ({ onBackToHome, onOpenConta
             </button>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Highlights Bar */}
-      <div className="bg-[#F0FDFA] border-b border-[#2DD4BF]/30 py-6">
+      <section aria-label="Specialized service highlights" className="bg-[#F0FDFA] border-b border-[#2DD4BF]/30 py-6">
         <div className="max-w-[1160px] w-[92%] mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-xs font-caps tracking-[1.5px] uppercase font-bold text-gray-800">
           <div className="flex items-center justify-center gap-2">
             <FolderKanban className="w-4 h-4 text-[#0D9488]" />
@@ -69,10 +75,10 @@ export const SpecializedPage: React.FC<PageProps> = ({ onBackToHome, onOpenConta
             <span>Final Walkthrough & Handover</span>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Main Content: Services in this division */}
-      <div className="max-w-[1160px] w-[92%] mx-auto py-16 sm:py-20">
+      <section className="max-w-[1160px] w-[92%] mx-auto py-16 sm:py-20">
         <div className="mb-14">
           <h2 className="font-display text-3xl sm:text-4xl font-semibold tracking-[-0.02em] text-black mb-3">
             Transforming Chaos into Calming Functionality
@@ -168,16 +174,20 @@ export const SpecializedPage: React.FC<PageProps> = ({ onBackToHome, onOpenConta
 
         {/* Bottom CTA to return */}
         <div className="mt-16 text-center pt-8 border-t border-gray-200">
-          <button
-            onClick={onBackToHome}
-            type="button"
+          <a
+            href="/"
+            onClick={(e) => {
+              if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+              e.preventDefault();
+              onBackToHome();
+            }}
             className="inline-flex items-center gap-2 text-sm font-caps tracking-[2px] uppercase text-black hover:text-[#0D9488] font-bold"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Return to All Services & Main Experience</span>
-          </button>
+          </a>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

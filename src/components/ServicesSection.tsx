@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { SERVICES_LIST } from '../data';
 import { ServiceItem } from '../types';
+import { ROUTE_PATHS } from '../seo';
 
 interface ServicesSectionProps {
   onSelectServiceForQuote: (serviceTitle: string) => void;
@@ -129,31 +130,55 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           </p>
         </div>
 
-        {/* Category Filters */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 mb-12 fade-in-up-observe">
+        {/* Category Filters & Real URL Service Page Links */}
+        <nav
+          aria-label="Service categories"
+          className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 mb-12 fade-in-up-observe"
+        >
           {[
-            { id: 'all', label: 'All Services (9)', isPage: false },
-            { id: 'residential', label: 'Residential Care', isPage: true },
-            { id: 'vacation', label: 'Vacation Rentals', isPage: true },
-            { id: 'specialized', label: 'Organizing & Post-Build', isPage: true },
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => handleCategoryClick(tab.id)}
-              className={`px-5 py-3 rounded-[8px] font-caps text-xs sm:text-[13px] tracking-[1.5px] uppercase font-bold transition-all border cursor-pointer flex items-center gap-2 ${
-                activeCategory === tab.id
-                  ? 'bg-black text-white border-black shadow-sm'
-                  : 'bg-white text-gray-800 border-gray-200 hover:border-[#0D9488] hover:text-[#0D9488]'
-              }`}
-              title={tab.isPage ? `Load dedicated ${tab.label} page` : 'Show all services'}
-            >
-              <span>{tab.label}</span>
-              {tab.isPage && (
-                <span className="text-xs text-[#0D9488] font-normal">↗</span>
-              )}
-            </button>
-          ))}
-        </div>
+            { id: 'all' as const, label: 'All Services (9)', isPage: false, href: null },
+            { id: 'residential' as const, label: 'Residential Care', isPage: true, href: ROUTE_PATHS.residential },
+            { id: 'vacation' as const, label: 'Vacation Rentals', isPage: true, href: ROUTE_PATHS.vacation },
+            { id: 'specialized' as const, label: 'Organizing & Post-Build', isPage: true, href: ROUTE_PATHS.specialized },
+          ].map((tab) => {
+            const tabClasses = `px-5 py-3 rounded-[8px] font-caps text-xs sm:text-[13px] tracking-[1.5px] uppercase font-bold transition-all border cursor-pointer flex items-center gap-2 ${
+              activeCategory === tab.id
+                ? 'bg-black text-white border-black shadow-sm'
+                : 'bg-white text-gray-800 border-gray-200 hover:border-[#0D9488] hover:text-[#0D9488]'
+            }`;
+
+            if (tab.isPage && tab.href) {
+              return (
+                <a
+                  key={tab.id}
+                  href={tab.href}
+                  onClick={(e) => {
+                    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+                    e.preventDefault();
+                    handleCategoryClick(tab.id);
+                  }}
+                  className={tabClasses}
+                  title={`Load dedicated ${tab.label} page`}
+                >
+                  <span>{tab.label}</span>
+                  <span className="text-xs text-[#0D9488] font-normal">↗</span>
+                </a>
+              );
+            }
+
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => handleCategoryClick(tab.id)}
+                className={tabClasses}
+                title="Show all services"
+              >
+                <span>{tab.label}</span>
+              </button>
+            );
+          })}
+        </nav>
       </div>
 
       <div id="checklists">
@@ -295,14 +320,18 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                       </button>
 
                       {onNavigateToPage && (
-                        <button
-                          onClick={() => onNavigateToPage(service.category)}
-                          type="button"
+                        <a
+                          href={ROUTE_PATHS[service.category]}
+                          onClick={(e) => {
+                            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+                            e.preventDefault();
+                            onNavigateToPage(service.category);
+                          }}
                           className="w-full mt-2.5 text-center font-caps text-[11px] tracking-[1.5px] uppercase text-white/80 hover:text-[#5EEAD4] font-bold flex items-center justify-center gap-1 transition-colors cursor-pointer"
                         >
                           <span>Open Dedicated Page</span>
                           <ExternalLink className="w-3 h-3" />
-                        </button>
+                        </a>
                       )}
                     </div>
                   </div>

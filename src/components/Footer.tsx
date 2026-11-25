@@ -5,9 +5,13 @@ import { CareersModal } from './CareersModal';
 
 interface FooterProps {
   onScrollToContact?: () => void;
+  onNavigateHomeSection?: (sectionId?: string) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onScrollToContact }) => {
+export const Footer: React.FC<FooterProps> = ({
+  onScrollToContact,
+  onNavigateHomeSection,
+}) => {
   const [modalPolicy, setModalPolicy] = useState<'privacy' | 'terms' | null>(null);
   const [isCareersOpen, setIsCareersOpen] = useState<boolean>(false);
   const careersLinkRef = useRef<HTMLAnchorElement>(null);
@@ -92,27 +96,44 @@ export const Footer: React.FC<FooterProps> = ({ onScrollToContact }) => {
           </div>
 
           {/* Quick Nav (2 cols) */}
-          <div className="md:col-span-2">
-            <h4 className="font-caps text-xs tracking-[2px] uppercase text-white font-bold mb-4">
+          <nav aria-label="Footer navigation" className="md:col-span-2">
+            <h2 className="font-caps text-xs tracking-[2px] uppercase text-white font-bold mb-4">
               Navigation
-            </h4>
+            </h2>
             <ul className="space-y-2 font-sans text-[14.5px]">
-              <li><a href="#services" className="hover:text-aqua-light transition-colors">Services</a></li>
-              <li><a href="#philosophy" className="hover:text-aqua-light transition-colors">5S Philosophy</a></li>
-              <li><a href="#guarantee" className="hover:text-aqua-light transition-colors">24h Guarantee</a></li>
-              <li><a href="#about" className="hover:text-aqua-light transition-colors">About Alice Keiko</a></li>
-              <li><a href="#showcase" className="hover:text-aqua-light transition-colors">Before & After</a></li>
-              <li><a href="#testimonials" className="hover:text-aqua-light transition-colors">Reviews</a></li>
-              <li><a href="#faq" className="hover:text-aqua-light transition-colors">FAQ</a></li>
-              <li><a href="#contact" className="hover:text-aqua-light transition-colors">Contact</a></li>
+              {[
+                { label: 'Services', id: 'services' },
+                { label: '5S Philosophy', id: 'philosophy' },
+                { label: '24h Guarantee', id: 'guarantee' },
+                { label: 'About Alice Keiko', id: 'about' },
+                { label: 'Before & After', id: 'showcase' },
+                { label: 'Reviews', id: 'testimonials' },
+                { label: 'FAQ', id: 'faq' },
+                { label: 'Contact', id: 'contact' },
+              ].map((item) => (
+                <li key={item.id}>
+                  <a
+                    href={`/#${item.id}`}
+                    onClick={(e) => {
+                      if (!onNavigateHomeSection) return;
+                      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+                      e.preventDefault();
+                      onNavigateHomeSection(item.id);
+                    }}
+                    className="hover:text-aqua-light transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
             </ul>
-          </div>
+          </nav>
 
           {/* Service Area (3 cols) */}
           <div className="md:col-span-3">
-            <h4 className="font-caps text-xs tracking-[2px] uppercase text-white font-bold mb-4">
+            <h2 className="font-caps text-xs tracking-[2px] uppercase text-white font-bold mb-4">
               Island Service Regions
-            </h4>
+            </h2>
             <p className="text-xs text-gray-400 font-sans mb-3">
               Headquartered on the North Shore, proudly serving:
             </p>
@@ -125,9 +146,9 @@ export const Footer: React.FC<FooterProps> = ({ onScrollToContact }) => {
 
           {/* Direct Public Contacts (2 cols) */}
           <div className="md:col-span-2">
-            <h4 className="font-caps text-xs tracking-[2px] uppercase text-white font-bold mb-4">
+            <h2 className="font-caps text-xs tracking-[2px] uppercase text-white font-bold mb-4">
               Direct Contact
-            </h4>
+            </h2>
             <div className="space-y-3 font-sans text-[14px]">
               <div>
                 <span className="text-[10px] font-caps tracking-[1px] uppercase text-gray-400 block">
