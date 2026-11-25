@@ -1,0 +1,4 @@
+# Redireciona www para o domínio sem www (301)
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www\.alicekeikocleaning\.com$ [NC]
+RewriteRule ^(.*)$ https://alicekeikocleaning.com/$1 [R=301,L]
