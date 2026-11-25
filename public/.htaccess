@@ -2,3 +2,12 @@
 RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www\.alicekeikocleaning\.com$ [NC]
 RewriteRule ^(.*)$ https://alicekeikocleaning.com/$1 [R=301,L]
+
+# Páginas pré-renderizadas: a URL oficial não tem barra final (/residential).
+# /residential/ e /residential/index.html -> /residential (301)
+RewriteCond %{THE_REQUEST} \s/+(residential|vacation-rental|specialized)/(index\.html)?(\?\S*)?\s
+RewriteRule ^ https://alicekeikocleaning.com/%1 [R=301,L]
+
+# /residential (sem barra) serve o HTML pré-renderizado da pasta,
+# antes de o servidor redirecionar a pasta para a versão com barra
+RewriteRule ^(residential|vacation-rental|specialized)$ /$1/index.html [L]
