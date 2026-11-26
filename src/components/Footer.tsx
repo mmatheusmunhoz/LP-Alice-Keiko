@@ -154,13 +154,13 @@ export const Footer: React.FC<FooterProps> = ({
                 <span className="text-[10px] font-caps tracking-[1px] uppercase text-gray-400 block">
                   Call & Text (SMS):
                 </span>
-                <button
-                  type="button"
-                  onClick={handleContactClick}
+                <a
+                  href="tel:+18082182515"
+                  data-cta-location="footer"
                   className="text-white hover:text-aqua-light font-bold block cursor-pointer text-left"
                 >
                   {COMPANY_INFO.phone}
-                </button>
+                </a>
               </div>
 
               <div>
@@ -169,6 +169,7 @@ export const Footer: React.FC<FooterProps> = ({
                 </span>
                 <a
                   href={`https://wa.me/${COMPANY_INFO.whatsappRaw}`}
+                  data-cta-location="footer"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white hover:text-aqua-light block text-xs"
@@ -183,6 +184,7 @@ export const Footer: React.FC<FooterProps> = ({
                 </span>
                 <a
                   href={`mailto:${COMPANY_INFO.email}`}
+                  data-cta-location="footer"
                   className="text-white hover:text-aqua-light break-all text-xs block"
                 >
                   {COMPANY_INFO.email}

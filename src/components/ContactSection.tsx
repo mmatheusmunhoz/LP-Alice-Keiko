@@ -49,14 +49,26 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService }
                 Phone
               </h3>
               <a
-                href={`tel:${COMPANY_INFO.phoneRaw}`}
+                href="tel:+18082182515"
+                data-cta-location="contact"
                 className="font-sans text-[17px] text-gray-800 hover:text-[#0D9488] transition-colors inline-flex items-center gap-2 font-medium"
               >
                 <Phone className="w-4 h-4 text-[#0D9488]" />
                 <span>{COMPANY_INFO.phone}</span>
               </a>
 
-              <p className="mt-2 inline-flex items-center gap-1.5 font-sans text-[13px] text-[#0F766E] font-medium">
+              <div className="mt-3">
+                <a
+                  href="sms:+18082182515"
+                  data-cta-location="contact"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-[8px] bg-[#0D9488] hover:bg-[#0F766E] text-white font-caps text-xs tracking-[1.5px] uppercase font-bold transition-colors cursor-pointer shadow-xs"
+                >
+                  <MessageSquare className="w-3.5 h-3.5 shrink-0" />
+                  <span>Text us (SMS)</span>
+                </a>
+              </div>
+
+              <p className="mt-2.5 inline-flex items-center gap-1.5 font-sans text-[13px] text-[#0F766E] font-medium">
                 <MessageSquare className="w-3.5 h-3.5 shrink-0" />
                 <span>Text messages (SMS) welcome for quickest response</span>
               </p>
@@ -69,6 +81,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService }
               </h3>
               <a
                 href={`mailto:${COMPANY_INFO.email}`}
+                data-cta-location="contact"
                 className="font-sans text-[17px] text-gray-800 hover:text-[#0D9488] transition-colors inline-flex items-center gap-2 break-all"
               >
                 <Mail className="w-4 h-4 text-[#0D9488] shrink-0" />

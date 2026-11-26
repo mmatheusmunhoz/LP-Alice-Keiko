@@ -64,13 +64,13 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <div className="flex items-center gap-4">
             <span className="text-aqua-light font-medium">Prompt scheduling & inquiries:</span>
-            <button
-              type="button"
-              onClick={() => onOpenQuoteModal()}
+            <a
+              href="tel:+18082182515"
+              data-cta-location="topbar"
               className="text-white hover:text-aqua-light transition-colors font-bold underline cursor-pointer"
             >
               {COMPANY_INFO.phone}
-            </button>
+            </a>
           </div>
         </div>
       </div>

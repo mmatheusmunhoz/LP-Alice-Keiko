@@ -80,7 +80,22 @@ export const FAQSection: React.FC = () => {
 
                   {isOpen && (
                     <div className="p-6 pt-2 font-sans text-[16px] text-gray-700 leading-relaxed border-t border-gray-100 bg-white shadow-inset">
-                      <p className="whitespace-pre-line">{faq.answer}</p>
+                      <p className="whitespace-pre-line">
+                        {faq.answer.split('(808) 218-2515').map((part, partIdx, arr) => (
+                          <React.Fragment key={partIdx}>
+                            {part}
+                            {partIdx < arr.length - 1 && (
+                              <a
+                                href="tel:+18082182515"
+                                data-cta-location="faq"
+                                className="text-[#0D9488] hover:text-[#0F766E] font-semibold underline underline-offset-2"
+                              >
+                                (808) 218-2515
+                              </a>
+                            )}
+                          </React.Fragment>
+                        ))}
+                      </p>
                     </div>
                   )}
                 </div>

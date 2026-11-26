@@ -8,6 +8,7 @@ import {
   Leaf,
   HeartHandshake,
   Award,
+  MessageSquare,
 } from 'lucide-react';
 import { DIFFERENTIALS_DATA } from '../data';
 import { WorkGallery } from './WorkGallery';
@@ -95,9 +96,23 @@ export const DifferentialsGuarantee: React.FC<DifferentialsGuaranteeProps> = ({
               <span className="font-caps text-xs tracking-[2px] uppercase text-gray-600 font-bold block mb-2">
                 SPEAK DIRECTLY WITH ALICE KEIKO
               </span>
-              <p className="font-display text-2xl sm:text-3xl text-black font-semibold mb-1 tabular-nums">
-                (808) 218-2515
-              </p>
+              <div className="flex flex-wrap items-center justify-center gap-2.5 mb-2">
+                <a
+                  href="tel:+18082182515"
+                  data-cta-location="guarantee"
+                  className="font-display text-2xl sm:text-[26px] text-black hover:text-[#0D9488] transition-colors font-semibold tabular-nums"
+                >
+                  (808) 218-2515
+                </a>
+                <a
+                  href="sms:+18082182515"
+                  data-cta-location="guarantee"
+                  className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-[8px] border border-[#0D9488] text-[#0F766E] hover:bg-[#0D9488] hover:text-white font-caps text-[11px] tracking-[1.2px] uppercase font-bold transition-colors cursor-pointer whitespace-nowrap"
+                >
+                  <MessageSquare className="w-3.5 h-3.5 shrink-0" />
+                  <span>Text us (SMS)</span>
+                </a>
+              </div>
               <p className="text-sm text-gray-600 font-sans mb-4">
                 Call or Text Message SMS
               </p>
